@@ -1,5 +1,7 @@
 package Objects;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 
 public class Liqueur extends Ingredient {
@@ -27,4 +29,31 @@ public class Liqueur extends Ingredient {
 		
 		return liqueurs;
 	}
+	
+	public static ArrayList<Liqueur> buildList(String filePath) {
+		
+		try {
+			
+			ArrayList<Liqueur> liqueurs = new ArrayList<Liqueur>();
+			BufferedReader listReader = new BufferedReader(new FileReader(filePath));
+			String name;
+		
+			while ( (name = listReader.readLine()) != null)
+				liqueurs.add(new Liqueur(name, 0));
+		
+			return liqueurs;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		
+		return null;
+	}
 }
+
+
+
+
+
+
