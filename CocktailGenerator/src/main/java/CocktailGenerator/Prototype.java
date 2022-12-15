@@ -61,10 +61,6 @@ public class Prototype {
 		//printRecipe(sideCar);
 		//printRecipe(sexOnTheBeach);
 		printRecipe(daiquiri);
-		
-		
-		//generalize further by creting a generator class, and storing the HashMap there. 
-		//Any call to generateRecipe would already have access to the Map
 
 	}
 	
