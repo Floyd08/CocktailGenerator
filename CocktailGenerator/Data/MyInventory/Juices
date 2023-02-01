@@ -1,7 +1,7 @@
-Lemon
-Lime
-Cranberry
-Orange
-Apple
-Peach
-Pineapple
+{"superType":"Juice","type":"Juice","subType":"Lemon","proportion":0}
+{"superType":"Juice","type":"Juice","subType":"Lime","proportion":0}
+{"superType":"Juice","type":"Juice","subType":"Cranberry","proportion":0}
+{"superType":"Juice","type":"Juice","subType":"Orange","proportion":0}
+{"superType":"Juice","type":"Juice","subType":"Apple","proportion":0}
+{"superType":"Juice","type":"Juice","subType":"Peach","proportion":0}
+{"superType":"Juice","type":"Juice","subType":"Pineapple","proportion":0}

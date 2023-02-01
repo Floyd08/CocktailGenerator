@@ -1,7 +1,12 @@
-Whiskey
-Cognac
-Dark Rum
-White Rum
-Tequila
-Gin
-Vodka
+{"superType":"Spirit","type":"Whisky","subType":"Whisky","proportion":0}
+{"superType":"Spirit","type":"Cognac","subType":"Cognac","proportion":0}
+{"superType":"Spirit","type":"Kirsch","subType":"Kirsch","proportion":0}
+{"superType":"Spirit","type":"Black Rum","subType":"Black Rum","proportion":0}
+{"superType":"Spirit","type":"Dark Rum","subType":"Dark Rum","proportion":0}
+{"superType":"Spirit","type":"White Rum","subType":"White Rum","proportion":0}
+{"superType":"Spirit","type":"Cachaca","subType":"Cachaca","proportion":0}
+{"superType":"Spirit","type":"Tequila","subType":"Tequila","proportion":0}
+{"superType":"Spirit","type":"Mezcal","subType":"Mezcal","proportion":0}
+{"superType":"Spirit","type":"Gin","subType":"Gin","proportion":0}
+{"superType":"Spirit","type":"Vodka","subType":"Vodka","proportion":0}
+

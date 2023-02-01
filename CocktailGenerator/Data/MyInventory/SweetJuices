@@ -1,4 +1,4 @@
-Orange
-Apple
-Peach
-Pineapple
+{"superType":"Juice","type":"SweetJuice","subType":"Orange(Fresh)","proportion":0}
+{"superType":"Juice","type":"SweetJuice","subType":"Apple","proportion":0}
+{"superType":"Juice","type":"SweetJuice","subType":"Peach","proportion":0}
+{"superType":"Juice","type":"SweetJuice","subType":"Pineapple","proportion":0}

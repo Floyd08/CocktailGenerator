@@ -1,11 +1,17 @@
-Curacao
-Peach Schnapps
-Cherry Heering
-Mango Malibu
-Sloe Gin
-Raspberry Wine
-Creme de Cacao
-Rhubarb Liqueur
-Southern Comfort
-Frangelico
-Maraschino
+{"superType":"Liqueur","type":"Liqueur","subType":"Curacao","proportion":0}
+{"superType":"Liqueur","type":"Liqueur","subType":"Peach Schnapps","proportion":0}
+{"superType":"Liqueur","type":"Liqueur","subType":"Cherry Heering","proportion":0}
+{"superType":"Liqueur","type":"Liqueur","subType":"Mango Malibu","proportion":0}
+{"superType":"Liqueur","type":"Liqueur","subType":"Sloe Gin","proportion":0}
+{"superType":"Liqueur","type":"Liqueur","subType":"Raspberry Wine","proportion":0}
+{"superType":"Liqueur","type":"Liqueur","subType":"Creme de Cacao","proportion":0}
+{"superType":"Liqueur","type":"Liqueur","subType":"Rhubarb Liqueur","proportion":0}
+{"superType":"Liqueur","type":"Liqueur","subType":"Southern Comfort","proportion":0}
+{"superType":"Liqueur","type":"Liqueur","subType":"Frangelico","proportion":0}
+{"superType":"Liqueur","type":"Liqueur","subType":"Gianduja","proportion":0}
+{"superType":"Liqueur","type":"Liqueur","subType":"Irish Cream","proportion":0}
+{"superType":"Liqueur","type":"Liqueur","subType":"Maraschino","proportion":0}
+{"superType":"Liqueur","type":"Liqueur","subType":"Green Chartreuse","proportion":0}
+{"superType":"Liqueur","type":"Liqueur","subType":"Averna","proportion":0}
+{"superType":"Liqueur","type":"Liqueur","subType":"Fernet Branca","proportion":0}
+{"superType":"Liqueur","type":"Liqueur","subType":"Campari","proportion":0}

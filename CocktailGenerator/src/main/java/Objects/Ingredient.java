@@ -6,36 +6,85 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public abstract class Ingredient {
+import com.google.gson.Gson;
 
-	String label;
+public class Ingredient {
+
+	String superType, type, subType;
 	int proportion;
 	
 	//default constructor
 	public Ingredient() {
 		
-		this.label = "undefined";
+		this.superType = "Ingredient";
+		this.type = "Ingredient";
+		this.subType = "Ingredient";
 		this.proportion = 0;
 	}
  	
-	public Ingredient(String label, int proportion) {
+	public Ingredient(String superType, String type, String subType, int proportion) {
 		
-		this.label = label;
+		this.superType = superType;
+		this.type = type;
+		this.subType = subType;
 		this.proportion = proportion;
 	}
 	
-	public static ArrayList<? extends Ingredient> buildList(String filePath) throws Exception {
+	public static ArrayList<Ingredient> buildList(String filePath) throws Exception {
 		
-		ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
-		return ingredients;
+		BufferedReader listReader = null;
+		Gson gS = new Gson();
+		
+		try {
+			
+			ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+			listReader = new BufferedReader(new FileReader(filePath));
+			String Json;
+		
+			while ( (Json = listReader.readLine()) != null) {
+				
+				ingredients.add(gS.fromJson(Json, Ingredient.class));
+			}
+				
+			listReader.close();
+			return ingredients;
+		}
+		
+		catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		
+		finally {
+			if (listReader != null)
+				listReader.close();
+		}
+		
+		return null;
 	}
 	
-	public String getLabel() {
-		return label;
+	public String getSuperType() {
+		return superType;
 	}
 
-	public void setLabel(String label) {
-		this.label = label;
+	public void setSuperType(String superType) {
+		this.superType = superType;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getSubType() {
+		return subType;
+	}
+
+	public void setSubType(String subType) {
+		this.subType = subType;
 	}
 
 	public int getProportion() {
@@ -49,27 +98,29 @@ public abstract class Ingredient {
 	@Override
 	public String toString() {
 		//return "Ingredient (label: " + label + ", proportion: " + proportion + ")";
-		return proportion + " parts " + label;
+		return proportion + " parts " + subType;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(label, proportion);
+		return Objects.hash(proportion, subType, superType, type);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		
-		if (!(obj instanceof Ingredient))
+		}
+		if (obj == null) {
 			return false;
-		
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
 		Ingredient other = (Ingredient) obj;
-		
-		return Objects.equals(label, other.label) && proportion == other.proportion;
+		return proportion == other.proportion && Objects.equals(subType, other.subType)
+				&& Objects.equals(superType, other.superType) && Objects.equals(type, other.type);
 	}
-
+	
 	
 }

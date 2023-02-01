@@ -1,4 +1,6 @@
-Simple Syrup
-Honey Syrup
-Brown Sugar Syrup
-Oleo Saccharum
+{"superType":"Syrup","type":"Syrup","subType":"Simple Syrup","proportion":0}
+{"superType":"Syrup","type":"Syrup","subType":"Honey Syrup","proportion":0}
+{"superType":"Syrup","type":"Syrup","subType":"Brown Sugar Syrup","proportion":0}
+{"superType":"Syrup","type":"Syrup","subType":"Oleo Saccharum","proportion":0}
+{"superType":"Syrup","type":"Syrup","subType":"Maple Syrup","proportion":0}
+{"superType":"Syrup","type":"Syrup","subType":"Grenadine","proportion":0}

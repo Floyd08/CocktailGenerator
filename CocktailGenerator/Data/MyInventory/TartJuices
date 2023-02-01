@@ -1,4 +1,4 @@
-Lemon
-Lime
-Cranberry
-Orange (FC)
+{"superType":"Juice","type":"TartJuice","subType":"Lemon","proportion":0}
+{"superType":"Juice","type":"TartJuice","subType":"Lime","proportion":0}
+{"superType":"Juice","type":"TartJuice","subType":"Cranberry","proportion":0}
+{"superType":"Juice","type":"TartJuice","subType":"Orange(Concentrate)","proportion":0}
