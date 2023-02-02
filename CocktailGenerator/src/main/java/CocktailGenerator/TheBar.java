@@ -1,26 +1,37 @@
 package CocktailGenerator;
 
-import java.util.ArrayList;
-
-import Objects.Ingredient;
+import java.util.Random;
 import Objects.Recipe;
-import Objects.drinkGenerator;
+import Objects.RecipeBook;
+import Objects.DrinkGenerator;
 
 public class TheBar {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
-		drinkGenerator mixer = new drinkGenerator();
+		DrinkGenerator mixer = new DrinkGenerator();
+		RecipeBook templates = new RecipeBook("Data/RecipeBook/Templates");
 		
-		ArrayList<Ingredient> sideCar = new ArrayList<Ingredient>();
-		sideCar.add(new Ingredient("Spirit", "Spirit", "Cognac", 8));
-		sideCar.add(new Ingredient("Liqueur", "FruitLiqueur", "Curacao", 2));
-		sideCar.add(new Ingredient("Juice", "TartJuice", "Lemon", 1));
-		
-		Recipe template = new Recipe("SideCar", sideCar);
-		
-		sideCar = mixer.generateRecipe(template);
-		mixer.printRecipe(template);
+		Recipe drink = useRandomRecipe(mixer, templates);
+		mixer.printRecipe(drink);
 
 	}
+	
+	public static Recipe useRandomRecipe(DrinkGenerator mixer, RecipeBook book) {
+		
+		Random geny = new Random();
+		int rando = geny.nextInt(book.getBook().size());
+		
+		Recipe drink = book.getBook().get(rando);
+		drink = mixer.generateRecipe(drink); 
+		
+		return drink;
+	}
 }
+
+
+
+
+
+
+

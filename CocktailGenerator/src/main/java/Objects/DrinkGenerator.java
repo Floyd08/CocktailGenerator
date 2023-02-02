@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-public class drinkGenerator {
+public class DrinkGenerator {
 
 	private String inventoryPath;
 	private HashMap<String, ArrayList<Ingredient>> lists =  new HashMap<String, ArrayList<Ingredient> >();
@@ -12,6 +12,8 @@ public class drinkGenerator {
 	private ArrayList<Ingredient> liqueurs;
 	private ArrayList<Ingredient> fruitLiqueurs;
 	private ArrayList<Ingredient> herbalLiqueurs;
+	private ArrayList<Ingredient> bitterLiqueurs;
+	private ArrayList<Ingredient> dessertLiqueurs;
 	private ArrayList<Ingredient> aromatizedWines;
 	private ArrayList<Ingredient> juices;
 	private ArrayList<Ingredient> tartJuices;
@@ -19,7 +21,7 @@ public class drinkGenerator {
 	private ArrayList<Ingredient> syrups;
 	private ArrayList<Ingredient> bitters;
 	
-	public drinkGenerator() {
+	public DrinkGenerator() {
 		
 		inventoryPath = "Data/MyInventory";				//The default inventory, if none is provided by a user profile		
 		
@@ -33,6 +35,8 @@ public class drinkGenerator {
 			liqueurs = Ingredient.buildList(inventoryPath + "/Liqueurs");
 			fruitLiqueurs = Ingredient.buildList(inventoryPath + "/FruitLiqueurs");
 			herbalLiqueurs = Ingredient.buildList(inventoryPath + "/HerbalLiqueurs");
+			bitterLiqueurs = Ingredient.buildList(inventoryPath + "/BitterLiqueurs");
+			dessertLiqueurs = Ingredient.buildList(inventoryPath + "/DessertLiqueurs");
 			aromatizedWines = Ingredient.buildList(inventoryPath + "/AromatizedWines");
 			juices = Ingredient.buildList(inventoryPath + "/Juices");
 			tartJuices = Ingredient.buildList(inventoryPath + "/TartJuices");
@@ -44,7 +48,9 @@ public class drinkGenerator {
 			lists.put("Liqueur", liqueurs);
 			lists.put("FruitLiqueur", fruitLiqueurs);
 			lists.put("HerbalLiqueur", herbalLiqueurs);
-			lists.put("AromatizedWines", aromatizedWines);
+			lists.put("BitterLiqueur", bitterLiqueurs);
+			lists.put("DessertLiqueur", dessertLiqueurs);
+			lists.put("AromatizedWine", aromatizedWines);
 			lists.put("Juice", juices);
 			lists.put("TartJuice", tartJuices);
 			lists.put("SweetJuice", sweetJuices);
@@ -59,11 +65,11 @@ public class drinkGenerator {
 	}
 	
 	// Later, when A user loads their inventory we'll use this constructor
-	public drinkGenerator(String userInventoryPath) {
+	public DrinkGenerator(String userInventoryPath) {
 		
 	}
 	
-	public ArrayList<Ingredient> generateRecipe(Recipe recipe) {
+	public Recipe generateRecipe(Recipe recipe) {
 		
 		Random geny = new Random();
 		ArrayList<Ingredient> template = recipe.getTemplate();
@@ -80,18 +86,36 @@ public class drinkGenerator {
 			template.set(i, list.get(rando));
 			template.get(i).setProportion(proportion);	
 		}
+		recipe.setTemplate(template);
 		
-		return template;
+		return recipe;
 	}
 	
 	public void printRecipe(Recipe recipe) {
 		
 		ArrayList<Ingredient> template = recipe.getTemplate();
-		String output = "";
+		String output = "Template used: " + recipe.getName() + " \n";
 		
-		for (int i = 0; i < template.size(); ++i)
-			output += template.get(i).toString() + " \n";
-					
+		for (int i = 0; i < template.size(); ++i) {
+			
+			if ( template.get(i).getType().equals("Bitters") ) {
+				output += template.get(i).proportion + " dashes " + template.get(i).subType + " bitters \n";
+			}
+			else {
+				output += template.get(i).toString() + " \n";
+			}
+		}
+		
+		if ( recipe.getExtras() != null ) {
+			
+			ArrayList<Ingredient> extras = recipe.getExtras();
+			
+			for (int i = 0; i < extras.size(); ++i) {
+				output += extras.get(i).toString() + " \n";
+			}
+		}
+			
+		
 		System.out.println(output);
 	}
 	

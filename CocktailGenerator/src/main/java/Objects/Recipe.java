@@ -2,6 +2,8 @@ package Objects;
 
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
+
 public class Recipe {
 
 	private String name;
@@ -13,6 +15,14 @@ public class Recipe {
 		
 		this.name = name;
 		this.template = template;
+		this.extras = new ArrayList<Ingredient>();
+	}
+	
+	public Recipe(String name, ArrayList<Ingredient> template, ArrayList<Ingredient> extras) {
+		
+		this.name = name;
+		this.template = template;
+		this.extras = extras;
 	}
 
 	public String getName() {
@@ -30,4 +40,25 @@ public class Recipe {
 	public void setTemplate(ArrayList<Ingredient> template) {
 		this.template = template;
 	}
+	
+	public ArrayList<Ingredient> getExtras() {
+		return extras;
+	}
+
+	public void setExtras(ArrayList<Ingredient> extras) {
+		this.extras = extras;
+	}
+	
+	public static Recipe fromJSON(String Json) {
+		
+		Gson gS = new Gson();
+		return gS.fromJson(Json, Recipe.class);
+	}
+	
+	public String toJSON() {
+		
+		Gson gS = new Gson();
+		return gS.toJson(this);
+	}
+	
 }
