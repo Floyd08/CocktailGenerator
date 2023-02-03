@@ -24,6 +24,15 @@ public class Recipe {
 		this.template = template;
 		this.extras = extras;
 	}
+	// Copy constructor
+	public Recipe(Recipe toCopy) {
+		
+		this.name = new String(toCopy.name);
+		this.template = new ArrayList<Ingredient>(toCopy.template);
+		this.extras = new ArrayList<Ingredient>(toCopy.extras);
+		this.shaken = toCopy.shaken;
+		this.stirred = toCopy.stirred;
+	}
 
 	public String getName() {
 		return name;

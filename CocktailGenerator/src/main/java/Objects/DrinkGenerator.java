@@ -1,25 +1,16 @@
 package Objects;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Random;
+
+import CocktailGenerator.ingredientType;
 
 public class DrinkGenerator {
 
 	private String inventoryPath;
-	private HashMap<String, ArrayList<Ingredient>> lists =  new HashMap<String, ArrayList<Ingredient> >();
-	private ArrayList<Ingredient> spirits;
-	private ArrayList<Ingredient> liqueurs;
-	private ArrayList<Ingredient> fruitLiqueurs;
-	private ArrayList<Ingredient> herbalLiqueurs;
-	private ArrayList<Ingredient> bitterLiqueurs;
-	private ArrayList<Ingredient> dessertLiqueurs;
-	private ArrayList<Ingredient> aromatizedWines;
-	private ArrayList<Ingredient> juices;
-	private ArrayList<Ingredient> tartJuices;
-	private ArrayList<Ingredient> sweetJuices;
-	private ArrayList<Ingredient> syrups;
-	private ArrayList<Ingredient> bitters;
+	private EnumMap<ingredientType, ArrayList<Ingredient>> lists =  new EnumMap<>(ingredientType.class);
 	
 	public DrinkGenerator() {
 		
@@ -27,35 +18,14 @@ public class DrinkGenerator {
 		
 		try {
 			
-			/*This could be done programatically!
-			 *Hard code the file names(Or better yet, get them from the OS), and use these
-			 *Strings to build lists and and them to the Map
-			 */
-			spirits = Ingredient.buildList(inventoryPath + "/Spirits");
-			liqueurs = Ingredient.buildList(inventoryPath + "/Liqueurs");
-			fruitLiqueurs = Ingredient.buildList(inventoryPath + "/FruitLiqueurs");
-			herbalLiqueurs = Ingredient.buildList(inventoryPath + "/HerbalLiqueurs");
-			bitterLiqueurs = Ingredient.buildList(inventoryPath + "/BitterLiqueurs");
-			dessertLiqueurs = Ingredient.buildList(inventoryPath + "/DessertLiqueurs");
-			aromatizedWines = Ingredient.buildList(inventoryPath + "/AromatizedWines");
-			juices = Ingredient.buildList(inventoryPath + "/Juices");
-			tartJuices = Ingredient.buildList(inventoryPath + "/TartJuices");
-			sweetJuices = Ingredient.buildList(inventoryPath + "/SweetJuices");
-			syrups = Ingredient.buildList(inventoryPath + "/Syrups");
-			bitters = Ingredient.buildList(inventoryPath + "/Bitters");
+			ArrayList<Ingredient> ingredients;
 			
-			lists.put("Spirit", spirits);
-			lists.put("Liqueur", liqueurs);
-			lists.put("FruitLiqueur", fruitLiqueurs);
-			lists.put("HerbalLiqueur", herbalLiqueurs);
-			lists.put("BitterLiqueur", bitterLiqueurs);
-			lists.put("DessertLiqueur", dessertLiqueurs);
-			lists.put("AromatizedWine", aromatizedWines);
-			lists.put("Juice", juices);
-			lists.put("TartJuice", tartJuices);
-			lists.put("SweetJuice", sweetJuices);
-			lists.put("Syrup", syrups);
-			lists.put("Bitters", bitters);
+			for (ingredientType type : ingredientType.values()) {
+				
+				ingredients = Ingredient.buildList(inventoryPath + "/" + type.toString());
+				//lists.put(type.toString(), ingredients);
+				lists.put(type, ingredients);
+			}
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -80,7 +50,7 @@ public class DrinkGenerator {
 			int proportion = template.get(i).getProportion();
 			//System.out.printf("Type: %s, Proportion: %s, i: %d\n", type, proportion, i);			
 			
-			ArrayList<Ingredient> list = lists.get(type);
+			ArrayList<Ingredient> list = lists.get(ingredientType.valueOf(type));
 			int rando = geny.nextInt(list.size() - 1);
 			
 			template.set(i, list.get(rando));
@@ -89,6 +59,27 @@ public class DrinkGenerator {
 		recipe.setTemplate(template);
 		
 		return recipe;
+	}
+	
+	public Recipe trueRandom(int numIngredients) {
+		
+		Random geny = new Random();
+		ArrayList<Ingredient> template = new ArrayList<Ingredient>();
+		int types = ingredientType.values().length;
+		int rando;
+		
+		for (int i = 0; i < numIngredients; ++i) {
+			
+			rando = geny.nextInt(types);
+			ArrayList<Ingredient> list = lists.get(ingredientType.getType(rando));
+			
+			rando = geny.nextInt(list.size() - 1);
+			template.add(i, list.get(rando));
+			rando = geny.nextInt(5) + 1;
+			template.get(i).setProportion(rando);
+		}
+		
+		return new Recipe("TrueRandom", template);
 	}
 	
 	public void printRecipe(Recipe recipe) {
@@ -115,8 +106,7 @@ public class DrinkGenerator {
 			}
 		}
 			
-		
-		System.out.println(output);
+		System.out.println("\n" + output);
 	}
 	
 }
