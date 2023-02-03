@@ -28,7 +28,6 @@ public class TheBar {
 		while (input > -1 && input <= numChoses + 1) {
 			
 			Recipe drink;
-			System.out.println(numChoses);
 			
 			if (input == numChoses) {
 				drink = useRandomRecipe(mixer, templates);
