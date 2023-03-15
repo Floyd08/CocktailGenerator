@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cocktailgenerator.model.Objects.DrinkGenerator;
@@ -41,9 +42,17 @@ public class RecipeController {
 	public List<String> getTemplateNames() {
 		
 		if (templates != null) {
-			//System.out.println(templates.getBookNames());
 			return templates.getBookNames();
-			//return new ResponseEntity<String>(gS.toJson(templates.getBookNames()), HttpStatus.OK);
+		}
+		else {
+			return null;
+		}
+	}
+	@GetMapping("/recipe")
+	public String printRecipe(@RequestParam int recipeIndex) {
+		
+		if (templates != null) {
+			return mixer.printRecipe(templates.getBook().get(recipeIndex));
 		}
 		else {
 			return null;
