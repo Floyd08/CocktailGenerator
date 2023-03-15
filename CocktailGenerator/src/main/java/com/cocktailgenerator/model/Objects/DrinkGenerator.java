@@ -81,7 +81,7 @@ public class DrinkGenerator {
 		return new Recipe("TrueRandom", template);
 	}
 	
-	public void printRecipe(Recipe recipe) {
+	public String printRecipe(Recipe recipe) {
 		
 		ArrayList<Ingredient> template = recipe.getTemplate();
 		String output = "Template used: " + recipe.getName() + " \n";
@@ -105,7 +105,8 @@ public class DrinkGenerator {
 			}
 		}
 			
-		System.out.println("\n" + output);
+		//System.out.println("\n" + output);
+		return output;
 	}
 	
 }
