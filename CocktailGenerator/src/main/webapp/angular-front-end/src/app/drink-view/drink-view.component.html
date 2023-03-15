@@ -1,17 +1,31 @@
 <head></head>
 
 <div class="card">
-	<h4 class="card-header">Cocktail Generator</h4>
+	<h2 class="card-header">Cocktail Generator</h2>
 	<div class="card-body">
 		<mat-form-field appearance="outline">
   			<mat-label>Choose a Template</mat-label>
-  			<mat-select>
-    		<!--  
-    		<mat-option *ngFor="let template of templateNames" [value]="template.value">
-      			{{template.viewValue}}
+  			<mat-select id = "recipeSelect" onchange="getRecipe(1)"> 
+    		<mat-option *ngFor="let templateName of templateNames" [value]="templateName">
+      			{{templateName}}
    			 </mat-option>
-   			 -->
   			</mat-select>
+  			<!--<input type = "text" name = "choice" ngModel>-->
 		</mat-form-field>
 	</div>
 </div>
+
+ 
+<div class="recipe">
+	<h4 class="recipe-header">Recipe Ingredients</h4>
+	<div class="recipe-body">
+		<!--<p id = "recipeView"></p> -->
+		
+		<textarea id="recipeView" name="recipeView" rows = 8 cols="40">
+			{{templateSelect}}
+		</textarea>
+		
+	</div>
+</div>
+
+
