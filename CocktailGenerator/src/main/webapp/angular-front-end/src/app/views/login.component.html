@@ -1,0 +1,28 @@
+<head></head>
+
+<div class="card">
+    <h4 class="card-header">Cocktail Generator</h4>
+    <div class="card-body">
+        <form (submit) = "$event.preventDefault()">
+            <div class="mb-3">
+				<mat-form-field appearance="outline">
+					<mat-label>User Name</mat-label>
+					<input matInput #user>
+				</mat-form-field>
+            </div>
+            <div class="mb-3">
+                <mat-form-field appearance="outline">
+					<mat-label>Password</mat-label>
+					<input matInput @password>
+				</mat-form-field>
+            </div>
+            <div>
+            	<button mat-raised-button>Log In</button>
+                <button mat-raised-button>Register</button>
+            </div>
+            <div>
+                <button mat-raised-button>Use as Guest</button>
+            </div>
+        </form>
+    </div>
+</div>
