@@ -1,20 +1,27 @@
 package com.cocktailgenerator.model.Objects;
 
-public class DrinkTemplateFrontEnd {
+public class RecipeFrontEnd {
 	
 	private int id;
 	private String name;
 	private String description;
 	
 	//default constructor
-	public DrinkTemplateFrontEnd() {
+	public RecipeFrontEnd() {
 		
 		this.id = -1;
 		this.name = "default";
 		this.description = "empty description";
 	}
 	
-	public DrinkTemplateFrontEnd(Recipe r, int i) {
+	public RecipeFrontEnd(Recipe r) {
+		
+		this.id = -1;
+		this.name = r.getName();
+		this.description = RecipeBook.describeRecipe(r);
+	}
+	
+	public RecipeFrontEnd(Recipe r, int i) {
 		
 		this.id = i;
 		this.name = r.getName();

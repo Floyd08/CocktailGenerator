@@ -7,11 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cocktailgenerator.model.Objects.DrinkGenerator;
-import com.cocktailgenerator.model.Objects.DrinkTemplateFrontEnd;
+import com.cocktailgenerator.model.Objects.RecipeFrontEnd;
 import com.cocktailgenerator.model.Objects.Recipe;
 import com.cocktailgenerator.model.Objects.RecipeBook;
 
@@ -60,9 +61,18 @@ public class RecipeController {
 		}
 	}
 	@GetMapping("/templates")
-	public List<DrinkTemplateFrontEnd> getTemplates() {
+	public List<RecipeFrontEnd> getTemplates() {
 		
 		return templates.packageBook();
+	}
+	
+	@GetMapping("/generateDrink")
+	public RecipeFrontEnd generateDrink(@RequestParam int index) {
+		
+		Recipe newDrink = new Recipe(templates.getBook().get(index));
+		newDrink = mixer.generateRecipe(newDrink);
+		
+		return new RecipeFrontEnd(newDrink);
 	}
 }
 

@@ -57,12 +57,12 @@ public class RecipeBook {
 		this.book = book;
 	}
 	
-	public List<DrinkTemplateFrontEnd> packageBook() {
+	public List<RecipeFrontEnd> packageBook() {
 		
-		List<DrinkTemplateFrontEnd> newBook = new ArrayList<DrinkTemplateFrontEnd>();
+		List<RecipeFrontEnd> newBook = new ArrayList<RecipeFrontEnd>();
 		
 		for (int i = 0; i < this.book.size(); ++i) {
-			newBook.add( new DrinkTemplateFrontEnd(this.getBook().get(i), i) );
+			newBook.add( new RecipeFrontEnd(this.getBook().get(i), i) );
 		}
 		
 		return newBook;

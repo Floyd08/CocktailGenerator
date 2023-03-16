@@ -19,6 +19,7 @@ export class DrinkViewComponent implements OnInit {
 	templateNames: drinkName[];
 	drinkTemplates: DrinkTemplate[];
 	templateSelect: string;
+	newDrink!: DrinkTemplate;
 
 	selectedNum = 0;
 	
@@ -32,6 +33,7 @@ export class DrinkViewComponent implements OnInit {
 		this.RS.getDrinkTemplates().subscribe(data => {
 			this.drinkTemplates = data;
 			this.populateNames();
+			this.generateDrink();
 			//console.log(this.templateNames[0]);
 			//console.log(this.drinkTemplates);
 			//this.setTemplateDescription(0);
@@ -55,11 +57,18 @@ export class DrinkViewComponent implements OnInit {
 			this.templateNames[i] = newName;
 		}
 	}
-	
-	setTemplateDescription(index: number): string {
-		this.templateSelect = this.drinkTemplates[index].description;
-		return this.templateSelect;
+
+	generateDrink() {
+		this.RS.generateNewDrink(this.selectedNum).subscribe(data => {
+			this.newDrink = data;
+		})
 	}
+
+	
+	//setTemplateDescription(index: number): string {
+		//this.templateSelect = this.drinkTemplates[index].description;
+		//return this.templateSelect;
+	//}
 	
 	
 	//getRecipe(index: number) {
