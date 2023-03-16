@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cocktailgenerator.model.Objects.DrinkGenerator;
+import com.cocktailgenerator.model.Objects.DrinkTemplateFrontEnd;
 import com.cocktailgenerator.model.Objects.Recipe;
 import com.cocktailgenerator.model.Objects.RecipeBook;
 
@@ -38,7 +39,7 @@ public class RecipeController {
 		}
 	}
 	
-	@GetMapping("/templates")
+	@GetMapping("/templateNames")
 	public List<String> getTemplateNames() {
 		
 		if (templates != null) {
@@ -57,6 +58,11 @@ public class RecipeController {
 		else {
 			return null;
 		}
+	}
+	@GetMapping("/templates")
+	public List<DrinkTemplateFrontEnd> getTemplates() {
+		
+		return templates.packageBook();
 	}
 }
 

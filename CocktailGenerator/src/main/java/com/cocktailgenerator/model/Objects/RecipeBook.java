@@ -3,6 +3,7 @@ package com.cocktailgenerator.model.Objects;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.Gson;
 
@@ -41,7 +42,7 @@ public class RecipeBook {
 		
 		ArrayList<String> bookNames = new ArrayList<String>();
 		
-		for (Recipe r: book) {
+		for (Recipe r: this.book) {
 			bookNames.add(r.getName());
 		}
 		
@@ -54,6 +55,17 @@ public class RecipeBook {
 
 	public void setBook(ArrayList<Recipe> book) {
 		this.book = book;
+	}
+	
+	public List<DrinkTemplateFrontEnd> packageBook() {
+		
+		List<DrinkTemplateFrontEnd> newBook = new ArrayList<DrinkTemplateFrontEnd>();
+		
+		for (int i = 0; i < this.book.size(); ++i) {
+			newBook.add( new DrinkTemplateFrontEnd(this.getBook().get(i), i) );
+		}
+		
+		return newBook;
 	}
 	
 	public static String describeRecipe(Recipe recipe) {

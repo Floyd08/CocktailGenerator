@@ -1,27 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { DrinkTemplate } from '../model/DrinkTemplate';
 
 @Injectable({
   	providedIn: 'root'
 })
 export class RecipeService {
 
-	private templateUrl: string;
+	private templatesUrl: string;
+	private templateNamesUrl: string;
 	private recipeUrl: string;
 
   	constructor(private http: HttpClient) {
-		this.templateUrl = 'http://localhost:8080/templates';
+		this.templatesUrl = 'http://localhost:8080/templates';
+		this.templateNamesUrl = 'http://localhost:8080/templateNames';
 		this.recipeUrl = 'http://localhost:8080/recipe';
 	}
 	
 	public getNames(): Observable<string[]> {
-		return this.http.get<string[]>(this.templateUrl);
+		return this.http.get<string[]>(this.templateNamesUrl);
 	}
 	
 	public getRecipe(index: number): Observable<string> {
 		const params = new HttpParams().append('recipeIndex', index);
 		const header = new HttpHeaders().append('responseType', 'text');
 		return this.http.get(this.recipeUrl, {responseType: 'text', params});
+	}
+	
+	public getDrinkTemplates(): Observable<DrinkTemplate[]> {
+		return this.http.get<DrinkTemplate[]>(this.templatesUrl);
 	}
 }
