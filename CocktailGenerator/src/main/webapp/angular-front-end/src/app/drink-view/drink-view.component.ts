@@ -34,17 +34,7 @@ export class DrinkViewComponent implements OnInit {
 			this.drinkTemplates = data;
 			this.populateNames();
 			this.generateDrink();
-			//console.log(this.templateNames[0]);
-			//console.log(this.drinkTemplates);
-			//this.setTemplateDescription(0);
 		})
-		
-		//console.log(this.templateNames[0]);		
-		
-		//this.RS.getRecipe(0).subscribe(data => {
-			//this.templateSelect = data;
-			//console.log(this.templateSelect);
-		//})
 	}
 	
 	populateNames() {
@@ -61,22 +51,8 @@ export class DrinkViewComponent implements OnInit {
 	generateDrink() {
 		this.RS.generateNewDrink(this.selectedNum).subscribe(data => {
 			this.newDrink = data;
+			console.log(this.newDrink.description);
 		})
 	}
-
-	
-	//setTemplateDescription(index: number): string {
-		//this.templateSelect = this.drinkTemplates[index].description;
-		//return this.templateSelect;
-	//}
-	
-	
-	//getRecipe(index: number) {
-		//this.RS.getRecipe(index).subscribe(data => {
-			//this.templateSelect = data;
-			//console.log(this.templateSelect);
-			//document.getElementById("recipeView")!.innerHTML = this.templateSelect;
-		//})	
-	//}
 
 }

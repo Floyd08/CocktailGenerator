@@ -5,13 +5,15 @@
 	<div class="card-body">
 		<mat-form-field appearance="outline">
   			<mat-label>Choose a Template</mat-label>
-  			<mat-select [(value)]="selectedNum">
+  			<mat-select [(value)]="selectedNum" >
     		<mat-option *ngFor="let templateName of templateNames" [value]="templateName.index">
       			{{templateName.name}}
    			 </mat-option>
-  			</mat-select>
-  			<!--<input type = "text" name = "choice" ngModel>-->
+  			</mat-select>			
 		</mat-form-field>
+	</div>
+	<div>
+		<button mat-raised-button onclick (click)="generateDrink()">Generate</button>
 	</div>
 </div>
 

@@ -32,7 +32,6 @@ export class RecipeService {
 
 	public generateNewDrink(index: number): Observable<DrinkTemplate> {
 		const params = new HttpParams().append('index', index);
-		const header = new HttpHeaders().append('responseType', 'text');
 		return this.http.get<DrinkTemplate>(this.newDrinkUrl, {params});
 	}
 	
