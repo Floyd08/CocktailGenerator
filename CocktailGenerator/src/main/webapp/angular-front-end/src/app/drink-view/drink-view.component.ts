@@ -3,10 +3,10 @@ import { Observable } from 'rxjs';
 import { RecipeService } from '../services/recipe-service.service';
 import { DrinkTemplate } from '../model/DrinkTemplate';
 
-//interface Template {
-	//value: number;
-	//viewValue: string;
-//}
+interface drinkName {
+	index: number;
+	name: string;
+}
 
 @Component({
   selector: 'app-drink-view',
@@ -15,7 +15,8 @@ import { DrinkTemplate } from '../model/DrinkTemplate';
 })
 export class DrinkViewComponent implements OnInit {
 	
-	templateNames: string[];			//populate this array from the backend
+	//templateNames: string[];			//populate this array from the backend
+	templateNames: drinkName[];
 	drinkTemplates: DrinkTemplate[];
 	templateSelect: string;
 	
@@ -25,24 +26,32 @@ export class DrinkViewComponent implements OnInit {
 		this.templateSelect = "";
 	}
 	
-	ngOnInit() {
-		this.RS.getNames().subscribe(data => {
-			this.templateNames = data;
-			//console.log(this.templateNames);
-		})
-		
+	ngOnInit() {		
 		this.RS.getDrinkTemplates().subscribe(data => {
 			this.drinkTemplates = data;
+			this.populateNames();
+			//console.log(this.templateNames[0]);
 			//console.log(this.drinkTemplates);
-			this.setTemplateDescription(0);
+			//this.setTemplateDescription(0);
 		})
 		
-		
+		//console.log(this.templateNames[0]);		
 		
 		//this.RS.getRecipe(0).subscribe(data => {
 			//this.templateSelect = data;
 			//console.log(this.templateSelect);
 		//})
+	}
+	
+	populateNames() {
+		for(let i = 0; i < this.drinkTemplates.length; ++i){
+			const newName = {
+				index: i,
+				name: this.drinkTemplates[i].name
+			}
+			type drinkName = typeof newName;
+			this.templateNames[i] = newName;
+		}
 	}
 	
 	setTemplateDescription(index: number): string {

@@ -5,9 +5,10 @@
 	<div class="card-body">
 		<mat-form-field appearance="outline">
   			<mat-label>Choose a Template</mat-label>
-  			<mat-select id = "recipeSelect" onchange="getRecipe(1)"> 
-    		<mat-option *ngFor="let templateName of templateNames" [value]="templateName">
-      			{{templateName}}
+  			<!--  <mat-select id = "recipeSelect" onchange="getRecipe(1)"> -->
+  			<mat-select>
+    		<mat-option *ngFor="let templateName of templateNames" [value]="templateName.index">
+      			{{templateName.name}}
    			 </mat-option>
   			</mat-select>
   			<!--<input type = "text" name = "choice" ngModel>-->
