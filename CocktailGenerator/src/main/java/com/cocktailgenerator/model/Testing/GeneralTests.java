@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.cocktailgenerator.model.Objects.Ingredient;
 import com.cocktailgenerator.model.Objects.RecipeBook;
 import com.cocktailgenerator.model.Objects.DrinkGenerator;
+import com.cocktailgenerator.model.Objects.DrinkTemplateFrontEnd;
 
 public class GeneralTests {
 
@@ -24,10 +25,15 @@ public class GeneralTests {
 
 		
 		RecipeBook book = new RecipeBook("Data/RecipeBook/Templates");
+		DrinkTemplateFrontEnd template = new DrinkTemplateFrontEnd();
 		
 		for (int i = 0; i < book.getBook().size(); ++i) {
-			System.out.println(i);
-			System.out.println(book.getBook().get(i).toJSON());
+			//System.out.println(i);
+			//System.out.println(book.getBook().get(i).toJSON());
+			
+			//System.out.println(RecipeBook.describeRecipe( book.getBook().get(i)) );
+			template = new DrinkTemplateFrontEnd(book.getBook().get(i), i);
+			System.out.println(template.toString());
 		}
 	}
 

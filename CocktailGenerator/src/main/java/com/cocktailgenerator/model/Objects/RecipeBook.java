@@ -36,10 +36,6 @@ public class RecipeBook {
 				bookReader.close();
 		}
 	}
-
-	public ArrayList<Recipe> getBook() {
-		return book;
-	}
 	
 	public ArrayList<String> getBookNames() {
 		
@@ -52,7 +48,39 @@ public class RecipeBook {
 		return bookNames;
 	}
 
+	public ArrayList<Recipe> getBook() {
+		return book;
+	}
+
 	public void setBook(ArrayList<Recipe> book) {
 		this.book = book;
+	}
+	
+	public static String describeRecipe(Recipe recipe) {
+		
+		ArrayList<Ingredient> template = recipe.getTemplate();
+		String output = "";
+		
+		for (int i = 0; i < template.size(); ++i) {
+			
+			if ( template.get(i).getType().equals("Bitters") ) {
+				output += template.get(i).proportion + " dashes " + template.get(i).subType + " bitters \n";
+			}
+			else {
+				output += template.get(i).toString() + " \n";
+			}
+		}
+		
+		if ( recipe.getExtras() != null ) {
+			
+			ArrayList<Ingredient> extras = recipe.getExtras();
+			
+			for (int i = 0; i < extras.size(); ++i) {
+				output += extras.get(i).toString() + " \n";
+			}
+		}
+			
+		//System.out.println("\n" + output);
+		return output;
 	}
 }
