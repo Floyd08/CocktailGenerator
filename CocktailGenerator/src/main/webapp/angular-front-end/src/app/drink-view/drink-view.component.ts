@@ -19,6 +19,8 @@ export class DrinkViewComponent implements OnInit {
 	templateNames: drinkName[];
 	drinkTemplates: DrinkTemplate[];
 	templateSelect: string;
+
+	selectedNum = 0;
 	
 	constructor(private RS: RecipeService) {
 		this.templateNames = []; 
