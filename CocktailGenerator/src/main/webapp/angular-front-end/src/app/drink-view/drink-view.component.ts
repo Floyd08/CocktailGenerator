@@ -19,7 +19,7 @@ export class DrinkViewComponent implements OnInit {
 	templateNames: drinkName[];
 	drinkTemplates: DrinkTemplate[];
 	templateSelect: string;
-	newDrink!: DrinkTemplate;
+	newDrink: DrinkTemplate;
 
 	selectedNum = 0;
 	
@@ -27,13 +27,18 @@ export class DrinkViewComponent implements OnInit {
 		this.templateNames = []; 
 		this.drinkTemplates = [];
 		this.templateSelect = "";
+		this.newDrink = {
+			id: 0, 
+			name: "",
+			description: ""
+		}
 	}
 	
 	ngOnInit() {		
 		this.RS.getDrinkTemplates().subscribe(data => {
 			this.drinkTemplates = data;
 			this.populateNames();
-			this.generateDrink();
+			//this.generateDrink();
 		})
 	}
 	
