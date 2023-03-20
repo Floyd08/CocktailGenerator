@@ -3,13 +3,32 @@ package com.cocktailgenerator.model.Objects;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import org.bson.Document;
+
+import com.cocktailgenerator.main.DataConnection;
 import com.google.gson.Gson;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
 
 public class RecipeBook {
 
 	private ArrayList<Recipe> book = new ArrayList<Recipe>();
+	
+	public RecipeBook(DataConnection datCon) {
+		
+		Gson gS = new Gson();
+		MongoCollection<Document> templateCOL = datCon.getDB().getCollection("Templates");
+		
+		FindIterable<Document> templates = templateCOL.find();		
+		Iterator<Document> templIterator = templates.iterator();
+		
+		while(templIterator.hasNext()) {
+			book.add(gS.fromJson(templIterator.next().toJson(), Recipe.class));
+		}
+	}
 	
 	public RecipeBook(String filePath) throws Exception {
 		

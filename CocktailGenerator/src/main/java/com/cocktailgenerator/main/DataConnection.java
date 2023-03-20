@@ -6,7 +6,8 @@ import com.mongodb.client.MongoDatabase;
 
 public class DataConnection {
 
-	private String uri = "mongodb://localhost:27017";
+	//private String uri = "mongodb://localhost:27017";
+	private String uri = "mongodb+srv://Milkpants:YgDzEFw5klPpAyW2@cluster0.jhwkbgk.mongodb.net/?retryWrites=true&w=majority";
 	private static DataConnection datCon;
 	private MongoDatabase db;
 	

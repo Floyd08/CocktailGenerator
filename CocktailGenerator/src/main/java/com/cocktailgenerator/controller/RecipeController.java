@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cocktailgenerator.main.DataConnection;
 import com.cocktailgenerator.model.Objects.DrinkGenerator;
 import com.cocktailgenerator.model.Objects.RecipeFrontEnd;
 import com.cocktailgenerator.model.Objects.Recipe;
@@ -22,17 +23,21 @@ import com.google.gson.Gson;
 @CrossOrigin(origins = "http://localhost:4200")
 public class RecipeController {
 
+	DataConnection datCon;
 	DrinkGenerator mixer;
 	RecipeBook templates;
 	Gson gS = new Gson();
 	
 	public RecipeController() {
 		
-		mixer = new DrinkGenerator();
+		datCon = DataConnection.getInstance();
+		//mixer = new DrinkGenerator();
+		mixer = new DrinkGenerator(datCon);
 		templates = null;
 		
 		try {
-			 templates = new RecipeBook("Data/RecipeBook/Templates");
+			 //templates = new RecipeBook("Data/RecipeBook/Templates");
+			templates = new RecipeBook(datCon);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
