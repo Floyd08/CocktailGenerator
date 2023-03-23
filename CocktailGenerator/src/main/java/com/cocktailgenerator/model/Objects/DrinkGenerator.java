@@ -2,14 +2,54 @@ package com.cocktailgenerator.model.Objects;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.Iterator;
 import java.util.Random;
 
+import static com.mongodb.client.model.Filters.eq;
+import org.bson.Document;
+import org.bson.conversions.Bson;
+
+import com.cocktailgenerator.main.DataConnection;
 import com.cocktailgenerator.model.CocktailGenerator.ingredientType;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Projections;
 
 public class DrinkGenerator {
 
 	private String inventoryPath;
 	private EnumMap<ingredientType, ArrayList<Ingredient>> lists =  new EnumMap<>(ingredientType.class);
+	
+	public DrinkGenerator(DataConnection datCon) {
+		
+		ArrayList<Ingredient> ingredients;
+		MongoCollection<Document> ingredientsCOL = datCon.getDB().getCollection("Ingredients");
+		FindIterable<Document> subSetIngredients;
+		Bson projectionFields = Projections.fields(
+				Projections.include("superType", "type", "subType", "proportion"), 
+				Projections.excludeId());
+		
+		try {
+			for (ingredientType type : ingredientType.values()) {
+				
+				if (type == ingredientType.Spirit || type == ingredientType.Juice || type == ingredientType.Liqueur) {
+					subSetIngredients = ingredientsCOL.find(eq("superType", type.toString()))
+							.projection(projectionFields);
+				}
+				else {
+					subSetIngredients = ingredientsCOL.find(eq("type", type.toString()))
+							.projection(projectionFields);
+				}
+				Iterator<Document> subSetErator = subSetIngredients.iterator();
+				ingredients = Ingredient.buildList(subSetErator);
+				lists.put(type, ingredients);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+	}
 	
 	public DrinkGenerator() {
 		
@@ -21,6 +61,7 @@ public class DrinkGenerator {
 			
 			for (ingredientType type : ingredientType.values()) {
 				
+				//get a subset of the collection, then pass it to buildList to turn it into an arrayList. Then execution continues as is.
 				ingredients = Ingredient.buildList(inventoryPath + "/" + type.toString());
 				//lists.put(type.toString(), ingredients);
 				lists.put(type, ingredients);
@@ -107,6 +148,10 @@ public class DrinkGenerator {
 			
 		//System.out.println("\n" + output);
 		return output;
+	}
+
+	public EnumMap<ingredientType, ArrayList<Ingredient>> getLists() {
+		return lists;
 	}
 	
 }

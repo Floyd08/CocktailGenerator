@@ -3,9 +3,13 @@ package com.cocktailgenerator.model.Objects;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Objects;
 
+import org.bson.Document;
+
 import com.google.gson.Gson;
+import com.mongodb.client.FindIterable;
 
 public class Ingredient {
 
@@ -27,6 +31,18 @@ public class Ingredient {
 		this.type = type;
 		this.subType = subType;
 		this.proportion = proportion;
+	}
+	
+	public static ArrayList<Ingredient> buildList(Iterator<Document> ingredientIterator) {
+		Gson gS = new Gson();
+		ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+		Document doc;
+		
+		while (ingredientIterator.hasNext()) {
+			doc = ingredientIterator.next();
+			ingredients.add( gS.fromJson(doc.toJson(), Ingredient.class) );
+		}
+		return ingredients;
 	}
 	
 	public static ArrayList<Ingredient> buildList(String filePath) throws Exception {

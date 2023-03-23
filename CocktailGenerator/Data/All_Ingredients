@@ -1,0 +1,53 @@
+{"superType":"AromatizedWine","type":"AromatizedWine","subType":"Sweet Vermouth","proportion":0}
+{"superType":"AromatizedWine","type":"AromatizedWine","subType":"Dry Vermouth","proportion":0}
+{"superType":"AromatizedWine","type":"AromatizedWine","subType":"Sweet Lillet","proportion":0}
+{"superType":"Liqueur","type":"BitterLiqueur","subType":"Averna","proportion":0}
+{"superType":"Liqueur","type":"BitterLiqueur","subType":"Fernet Branca","proportion":0}
+{"superType":"Liqueur","type":"BitterLiqueur","subType":"Campari","proportion":0}
+{"superType":"Bitters","type":"Bitters","subType":"Angostura","proportion":0}
+{"superType":"Bitters","type":"Bitters","subType":"Peychauds","proportion":0}
+{"superType":"Bitters","type":"Bitters","subType":"Orange","proportion":0}
+{"superType":"Bitters","type":"Bitters","subType":"Mole","proportion":0}
+{"superType":"Bitters","type":"Bitters","subType":"Black Walnut","proportion":0}
+{"superType":"Bitters","type":"Bitters","subType":"Grapefruit Hops","proportion":0}
+{"superType":"Liqueur","type":"DessertLiqueur","subType":"Creme de Cacao","proportion":0}
+{"superType":"Liqueur","type":"DessertLiqueur","subType":"Frangelico","proportion":0}
+{"superType":"Liqueur","type":"DessertLiqueur","subType":"Gianduja","proportion":0}
+{"superType":"Liqueur","type":"DessertLiqueur","subType":"Irish Cream","proportion":0}
+{"superType":"Liqueur","type":"FruitLiqueur","subType":"Curacao","proportion":0}
+{"superType":"Liqueur","type":"FruitLiqueur","subType":"Peach Schnapps","proportion":0}
+{"superType":"Liqueur","type":"FruitLiqueur","subType":"Cherry Heering","proportion":0}
+{"superType":"Liqueur","type":"FruitLiqueur","subType":"Mango Malibu","proportion":0}
+{"superType":"Liqueur","type":"FruitLiqueur","subType":"Sloe Gin","proportion":0}
+{"superType":"Liqueur","type":"FruitLiqueur","subType":"Raspberry Wine","proportion":0}
+{"superType":"Liqueur","type":"FruitLiqueur","subType":"Rhubarb Liqueur","proportion":0}
+{"superType":"Liqueur","type":"FruitLiqueur","subType":"Southern Comfort","proportion":0}
+{"superType":"Liqueur","type":"FruitLiqueur","subType":"Maraschino","proportion":0}
+{"superType":"Liqueur","type":"HerbalLiqueur","subType":"Green Chartreuse","proportion":0}
+{"superType":"Liqueur","type":"HerbalLiqueur","subType":"Averna","proportion":0}
+{"superType":"Liqueur","type":"HerbalLiqueur","subType":"Sloe Gin","proportion":0}
+{"superType":"Spirit","type":"Whisky","subType":"Whisky","proportion":0}
+{"superType":"Spirit","type":"Cognac","subType":"Cognac","proportion":0}
+{"superType":"Spirit","type":"Kirsch","subType":"Kirsch","proportion":0}
+{"superType":"Spirit","type":"Black Rum","subType":"Black Rum","proportion":0}
+{"superType":"Spirit","type":"Dark Rum","subType":"Dark Rum","proportion":0}
+{"superType":"Spirit","type":"White Rum","subType":"White Rum","proportion":0}
+{"superType":"Spirit","type":"Cachaca","subType":"Cachaca","proportion":0}
+{"superType":"Spirit","type":"Tequila","subType":"Tequila","proportion":0}
+{"superType":"Spirit","type":"Mezcal","subType":"Mezcal","proportion":0}
+{"superType":"Spirit","type":"Gin","subType":"Gin","proportion":0}
+{"superType":"Spirit","type":"Vodka","subType":"Vodka","proportion":0}
+{"superType":"Juice","type":"SweetJuice","subType":"Orange(Fresh)","proportion":0}
+{"superType":"Juice","type":"SweetJuice","subType":"Apple","proportion":0}
+{"superType":"Juice","type":"SweetJuice","subType":"Peach","proportion":0}
+{"superType":"Juice","type":"SweetJuice","subType":"Pineapple","proportion":0}
+{"superType":"Syrup","type":"Syrup","subType":"Simple Syrup","proportion":0}
+{"superType":"Syrup","type":"Syrup","subType":"Honey Syrup","proportion":0}
+{"superType":"Syrup","type":"Syrup","subType":"Brown Sugar Syrup","proportion":0}
+{"superType":"Syrup","type":"Syrup","subType":"Oleo Saccharum","proportion":0}
+{"superType":"Syrup","type":"Syrup","subType":"Maple Syrup","proportion":0}
+{"superType":"Syrup","type":"Syrup","subType":"Grenadine","proportion":0}
+{"superType":"Juice","type":"TartJuice","subType":"Lemon","proportion":0}
+{"superType":"Juice","type":"TartJuice","subType":"Lime","proportion":0}
+{"superType":"Juice","type":"TartJuice","subType":"Cranberry","proportion":0}
+{"superType":"Juice","type":"TartJuice","subType":"Orange(Concentrate)","proportion":0}
