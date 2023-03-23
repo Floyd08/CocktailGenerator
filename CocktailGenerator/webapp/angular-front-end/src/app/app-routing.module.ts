@@ -5,7 +5,8 @@ import { LoginPageComponent } from './views/login.component';
 import { DrinkViewComponent } from './drink-view/drink-view.component';
 
 const routes: Routes = [
-	{path: '', redirectTo: '/logIn', pathMatch: 'full'},
+	//{path: '', redirectTo: '/logIn', pathMatch: 'full'},
+	{path: '', redirectTo: '/drink-view', pathMatch: 'full'},
 	{path: 'logIn', component: LoginPageComponent},
 	{path: 'drink-view', component: DrinkViewComponent}
 ];

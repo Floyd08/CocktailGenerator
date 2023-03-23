@@ -15,12 +15,13 @@ export class RecipeService {
 	private backendUrl: string;
 
   	constructor(private http: HttpClient) {
-		this.backendUrl = '18.191.37.210:8080'
+		//this.backendUrl = 'http://localhost:8080';
+		this.backendUrl = 'http://18.191.37.210:8080';
 
-		this.templatesUrl = 'http://localhost:8080/templates';
-		this.templateNamesUrl = 'http://localhost:8080/templateNames';
-		this.recipeUrl = 'http://localhost:8080/recipe';
-		this.newDrinkUrl = 'http://localhost:8080/generateDrink'
+		this.templatesUrl = this.backendUrl + '/templates';
+		this.templateNamesUrl = this.backendUrl + '/templateNames';
+		this.recipeUrl = this.backendUrl + '/recipe';
+		this.newDrinkUrl = this.backendUrl + '/generateDrink'
 	}
 	
 	public getNames(): Observable<string[]> {

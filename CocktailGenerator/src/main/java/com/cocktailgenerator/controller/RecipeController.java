@@ -20,7 +20,8 @@ import com.cocktailgenerator.model.Objects.RecipeBook;
 import com.google.gson.Gson;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://18.191.37.210")
 public class RecipeController {
 
 	DataConnection datCon;
