@@ -12,8 +12,11 @@ export class RecipeService {
 	private templateNamesUrl: string;
 	private recipeUrl: string;
 	private newDrinkUrl: string;
+	private backendUrl: string;
 
   	constructor(private http: HttpClient) {
+		this.backendUrl = '18.191.37.210:8080'
+
 		this.templatesUrl = 'http://localhost:8080/templates';
 		this.templateNamesUrl = 'http://localhost:8080/templateNames';
 		this.recipeUrl = 'http://localhost:8080/recipe';
