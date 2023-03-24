@@ -1,0 +1,49 @@
+.dropdown {
+    float: left;
+    position: relative;
+    top: 20px;
+    z-index: 10;
+}
+
+.output-container {
+    float: left;
+    position: absolute;
+    top: 305px;
+    left: 350px;
+    z-index: 2;
+}
+
+.template-container {
+    float: left;
+    position: relative;
+    z-index: 10;
+}
+
+.template-body {
+    float: left;
+    position: absolute;
+    left: 350px;
+    z-index: 1;
+  }
+  
+.template-header {
+    /*float: left;*/
+    /*padding: 40px;*/
+    position: relative;
+    z-index: 1;
+  }
+
+.recipe-body {
+    float: left;
+    position: relative;
+    z-index: 1;
+  }
+
+.recipe-header {
+    /*float: left;*/
+    /*padding: 40px;*/
+    position: relative;
+    z-index: 1;
+  }
+
+ 

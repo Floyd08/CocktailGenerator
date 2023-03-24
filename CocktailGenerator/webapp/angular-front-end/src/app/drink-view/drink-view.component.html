@@ -1,35 +1,34 @@
 <head></head>
 
-<div class="card">
-	<h2 class="card-header">Cocktail Generator</h2>
-	<div class="card-body">
+<h2 class="card-header">Cocktail Generator</h2>
+
+<div class="template-container" style="clear: both">
+	<div class="dropdown">
 		<mat-form-field appearance="outline">
   			<mat-label>Choose a Template</mat-label>
-  			<mat-select [(value)]="selectedNum" >
-    		<mat-option *ngFor="let templateName of templateNames" [value]="templateName.index">
-      			{{templateName.name}}
-   			 </mat-option>
+  			<mat-select class="select" [(value)]="selectedNum" >
+    			<mat-option class="select-list" *ngFor="let templateName of templateNames" [value]="templateName.index">
+      				{{templateName.name}} 
+				</mat-option>
   			</mat-select>			
 		</mat-form-field>
 		<button mat-raised-button onclick (click)="generateDrink()">Generate</button>
 	</div>
-	<div>
-		
+	<div class="template-body">
+		<h4 class="template-header">Template Recipe</h4>
+		<textarea id="templateView" name="templateView" rows = 8 cols="40">
+			{{drinkTemplates[selectedNum].description}}
+		</textarea>
 	</div>
 </div>
 
 
-<div class="float-container" style="clear: both">
+<div class="output-container" style="clear: both">
 		
-		<div class="template-body" style="float: left;">
-			<h4 class="template-header" style="float: left; padding: 40px;">Template Recipe</h4>
-			<textarea id="templateView" name="templateView" rows = 8 cols="40">
-				{{drinkTemplates[selectedNum].description}}
-			</textarea>
-		</div>
+		
 
-		<div class="recipe-body" style="float: left;">
-			<h4 class="recipe-header" style="float: left; padding: 40px;">New Recipe</h4>
+		<div class="recipe-body">
+			<h4 class="recipe-header" >New Recipe</h4>
 			<textarea id="templateView" name="templateView" rows = 8 cols="40">
 				{{newDrink.description}}
 			</textarea>
