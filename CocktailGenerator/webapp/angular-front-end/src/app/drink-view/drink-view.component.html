@@ -1,0 +1,35 @@
+<head></head>
+
+<h2 class="card-header">Cocktail Generator</h2>
+
+<div class="template-container" style="clear: both">
+	<div class="dropdown">
+		<mat-form-field appearance="outline">
+  			<mat-label>Choose a Template</mat-label>
+  			<mat-select class="select" [(value)]="selectedNum" >
+    			<mat-option class="select-list" *ngFor="let templateName of templateNames" [value]="templateName.index">
+      				{{templateName.name}} 
+				</mat-option>
+  			</mat-select>			
+		</mat-form-field>
+		<button mat-raised-button onclick (click)="generateDrink()">Generate</button>
+	</div>
+	<div class="template-body">
+		<h4 class="template-header">Template Recipe</h4>
+		<p id="template-View" name="template-View" class="template-View">
+			{{drinkTemplates[selectedNum].description}}
+		</p>
+	</div>
+</div>
+
+
+<div class="output-container" style="clear: both">
+		<div class="recipe-body">
+			<h4 class="recipe-header" >New Recipe</h4>
+			<p id="recipe-View" name="recipe-View" class="recipe-View">
+				{{newDrink.description}}
+			</p>
+		</div>
+</div>
+
+
