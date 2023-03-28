@@ -114,4 +114,35 @@ public class RecipeBook {
 		//System.out.println("\n" + output);
 		return output;
 	}
+	
+	public static ArrayList<String> convertForFrontEnd(Recipe recipe) {
+		
+		//RecipeFrontEnd output = new RecipeFrontEnd();
+		ArrayList<String> output = new ArrayList<String>();
+		ArrayList<Ingredient> template = recipe.getTemplate();
+		
+		//output.setName(recipe.getName());
+		
+		for (int i = 0; i < template.size(); ++i) {
+			
+			if ( template.get(i).getType().equals("Bitters") ) {
+				output.add(template.get(i).proportion + " dashes " + template.get(i).subType + " bitters \n");
+			}
+			else {
+				output.add(template.get(i).toString() + " \n");
+			}
+		}
+		
+		if ( recipe.getExtras() != null ) {
+			
+			ArrayList<Ingredient> extras = recipe.getExtras();
+			
+			for (int i = 0; i < extras.size(); ++i) {
+				output.add(extras.get(i).toString() + " \n");
+			}
+		}
+			
+		//System.out.println("\n" + output);
+		return output;
+	}
 }

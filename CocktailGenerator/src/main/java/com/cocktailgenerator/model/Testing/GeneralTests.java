@@ -25,16 +25,20 @@ public class GeneralTests {
 
 		
 		RecipeBook book = new RecipeBook("Data/RecipeBook/Templates");
-		RecipeFrontEnd template = new RecipeFrontEnd();
 		
-		for (int i = 0; i < book.getBook().size(); ++i) {
-			//System.out.println(i);
-			//System.out.println(book.getBook().get(i).toJSON());
-			
-			//System.out.println(RecipeBook.describeRecipe( book.getBook().get(i)) );
-			template = new RecipeFrontEnd(book.getBook().get(i), i);
-			System.out.println(template.toString());
-		}
+		RecipeFrontEnd newDrink = new RecipeFrontEnd(book.getBook().get(0));
+		System.out.println(newDrink);
+		
+//		RecipeFrontEnd template = new RecipeFrontEnd();
+//		
+//		for (int i = 0; i < book.getBook().size(); ++i) {
+//			//System.out.println(i);
+//			//System.out.println(book.getBook().get(i).toJSON());
+//			
+//			//System.out.println(RecipeBook.describeRecipe( book.getBook().get(i)) );
+//			template = new RecipeFrontEnd(book.getBook().get(i), i);
+//			System.out.println(template.toString());
+//		}
 	}
 
 }

@@ -1,9 +1,12 @@
 package com.cocktailgenerator.model.Objects;
 
+import java.util.ArrayList;
+
 public class RecipeFrontEnd {
 	
 	private int id;
 	private String name;
+	private ArrayList<String> descriptionRAW;
 	private String description;
 	
 	//default constructor
@@ -11,13 +14,15 @@ public class RecipeFrontEnd {
 		
 		this.id = -1;
 		this.name = "default";
-		this.description = "empty description";
+		this.descriptionRAW = new ArrayList<String>();
+		this.description = "Empty Description";
 	}
 	
 	public RecipeFrontEnd(Recipe r) {
 		
 		this.id = -1;
 		this.name = r.getName();
+		this.descriptionRAW = RecipeBook.convertForFrontEnd(r);
 		this.description = RecipeBook.describeRecipe(r);
 	}
 	
@@ -25,6 +30,7 @@ public class RecipeFrontEnd {
 		
 		this.id = i;
 		this.name = r.getName();
+		this.descriptionRAW = RecipeBook.convertForFrontEnd(r);
 		this.description = RecipeBook.describeRecipe(r);
 	}
 
@@ -44,6 +50,14 @@ public class RecipeFrontEnd {
 		this.name = name;
 	}
 
+	public ArrayList<String> getDescriptionRAW() {
+		return descriptionRAW;
+	}
+
+	public void setDescriptionRAW(ArrayList<String> descriptionRAW) {
+		this.descriptionRAW = descriptionRAW;
+	}
+	
 	public String getDescription() {
 		return description;
 	}
@@ -54,8 +68,11 @@ public class RecipeFrontEnd {
 
 	@Override
 	public String toString() {
-		return "DrinkTemplateFrontEnd [id=" + id + ", name=" + name + ", description=" + description + "]";
+		return "RecipeFrontEnd [id=" + id + ", name=" + name + ", descriptionRAW=" + descriptionRAW + ", description="
+				+ description + "]";
 	}
+
+	
 	
 	
 }

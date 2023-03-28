@@ -9,10 +9,12 @@ import static com.mongodb.client.model.Filters.eq;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
+import com.cocktailgenerator.exceptions.EmptyIngredientListException;
 import com.cocktailgenerator.main.DataConnection;
 import com.cocktailgenerator.model.CocktailGenerator.ingredientType;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Projections;
 
 public class DrinkGenerator {
@@ -20,8 +22,10 @@ public class DrinkGenerator {
 	private String inventoryPath;
 	private EnumMap<ingredientType, ArrayList<Ingredient>> lists =  new EnumMap<>(ingredientType.class);
 	
+	//The 'User' constructor. After validation, loads ingredients from the user's own list of ingredients
 	public DrinkGenerator(DataConnection datCon) {
 		
+		String typeToggle = "type";
 		ArrayList<Ingredient> ingredients;
 		MongoCollection<Document> ingredientsCOL = datCon.getDB().getCollection("Ingredients");
 		FindIterable<Document> subSetIngredients;
@@ -33,13 +37,52 @@ public class DrinkGenerator {
 			for (ingredientType type : ingredientType.values()) {
 				
 				if (type == ingredientType.Spirit || type == ingredientType.Juice || type == ingredientType.Liqueur) {
-					subSetIngredients = ingredientsCOL.find(eq("superType", type.toString()))
-							.projection(projectionFields);
+					typeToggle = "superType";							//More General lists
 				}
 				else {
-					subSetIngredients = ingredientsCOL.find(eq("type", type.toString()))
-							.projection(projectionFields);
+					typeToggle = "type";								//Specific lists
 				}
+				Bson filter = Filters.eq(typeToggle, type.toString());
+				subSetIngredients = ingredientsCOL.find(filter)				
+						.projection(projectionFields);
+				
+				Iterator<Document> subSetErator = subSetIngredients.iterator();
+				ingredients = Ingredient.buildList(subSetErator);
+				lists.put(type, ingredients);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	//The 'Guest' constructor. Loads ingredients from the master list of all ingredients
+	public DrinkGenerator(DataConnection datCon, String userName) {
+		
+		String typeToggle = "type";
+		ArrayList<Ingredient> ingredients;
+		MongoCollection<Document> ingredientsCOL = datCon.getDB().getCollection("UserIngredients");
+		FindIterable<Document> userIngredients, subSetIngredients;
+		Bson projectionFields = Projections.fields(
+				Projections.include("superType", "type", "subType", "proportion"), 
+				Projections.excludeId());
+		
+		try {
+			for (ingredientType type : ingredientType.values()) {
+				
+				
+				if (type == ingredientType.Spirit || type == ingredientType.Juice || type == ingredientType.Liqueur) {
+					typeToggle = "superType";
+				}
+				else {
+					typeToggle = "type";
+				}
+				
+				Bson filter = Filters.and(Filters.eq("owner", userName), Filters.eq(typeToggle, type.toString()));
+				subSetIngredients = ingredientsCOL.find(filter)
+						.projection(projectionFields);
+				
 				Iterator<Document> subSetErator = subSetIngredients.iterator();
 				ingredients = Ingredient.buildList(subSetErator);
 				lists.put(type, ingredients);
@@ -54,13 +97,9 @@ public class DrinkGenerator {
 	public DrinkGenerator() {
 		
 		inventoryPath = "Data/MyInventory";				//The default inventory, if none is provided by a user profile		
-		
 		try {
-			
 			ArrayList<Ingredient> ingredients;
-			
 			for (ingredientType type : ingredientType.values()) {
-				
 				//get a subset of the collection, then pass it to buildList to turn it into an arrayList. Then execution continues as is.
 				ingredients = Ingredient.buildList(inventoryPath + "/" + type.toString());
 				//lists.put(type.toString(), ingredients);
@@ -71,14 +110,12 @@ public class DrinkGenerator {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
-		
 	}
 	
-	// Later, when A user loads their inventory we'll use this constructor
-	public DrinkGenerator(String userInventoryPath) {
-		
-	}
 	
+	/*
+	 * 	The meat and potatoes of the whole app. Takes any recipe, presumably a template recipe, and randomizes the ingredients based on type or SuperType
+	 */
 	public Recipe generateRecipe(Recipe recipe) {
 		
 		Random geny = new Random();
@@ -91,10 +128,16 @@ public class DrinkGenerator {
 			//System.out.printf("Type: %s, Proportion: %s, i: %d\n", type, proportion, i);			
 			
 			ArrayList<Ingredient> list = lists.get(ingredientType.valueOf(type));
-			int rando = geny.nextInt(list.size() - 1);
 			
-			template.set(i, list.get(rando));
-			template.get(i).setProportion(proportion);	
+			if (list.isEmpty()) {
+				//Do nothing, and leave this ingredient as it is
+			}
+			else {
+				int rando = geny.nextInt(list.size() - 1);
+				
+				template.set(i, list.get(rando));
+				template.get(i).setProportion(proportion);
+			}
 		}
 		recipe.setTemplate(template);
 		
