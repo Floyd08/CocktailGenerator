@@ -13,8 +13,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
-//@CrossOrigin(origins = "http://18.191.37.210")
+@CrossOrigin(origins = {"${CrossOriginValue}"})
 public class UserController {
 
 	DataConnection datCon;
@@ -27,13 +26,13 @@ public class UserController {
 		userCOL = datCon.getDB().getCollection("Users");
 	}
 	
-	@GetMapping("/getUser")
-	public User validateUser(String name, String pswHash) {
-		
-		FindIterable<Document> userIterable = userCOL.find(eq("name", name));
-		Document userDoc = userIterable.first();
-		User user = gS.fromJson(userDoc.toJson(), User.class);
-		
-		
-	}
+//	@GetMapping("/getUser")
+//	public User validateUser(String name, String pswHash) {
+//		
+//		FindIterable<Document> userIterable = userCOL.find(eq("name", name));
+//		Document userDoc = userIterable.first();
+//		User user = gS.fromJson(userDoc.toJson(), User.class);
+//		
+//		
+//	}
 }

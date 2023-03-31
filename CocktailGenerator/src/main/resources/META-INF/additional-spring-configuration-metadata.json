@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "CrossOriginValue",
+  "type": "java.lang.String",
+  "description": "Sets the CrossOrigin value to the root IP of the API. Should only change in testing on local"
+}]}
