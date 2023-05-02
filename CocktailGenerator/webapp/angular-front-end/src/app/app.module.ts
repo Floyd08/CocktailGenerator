@@ -11,12 +11,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
+import { InventoryViewComponent } from './views/inventory-view/inventory-view.component';
 
 @NgModule({
   declarations: [
     AppComponent, 
     LoginPageComponent, 
-    DrinkViewComponent
+    DrinkViewComponent, InventoryViewComponent
   ],
   imports: [
     BrowserModule,
