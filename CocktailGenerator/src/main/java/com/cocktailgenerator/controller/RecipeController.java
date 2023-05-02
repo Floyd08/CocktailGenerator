@@ -79,6 +79,11 @@ public class RecipeController {
 		
 		return new RecipeFrontEnd(newDrink);
 	}
+	
+	@GetMapping("/getAllIngredients")
+	public ArrayList<Ingredient> getAllIngredients() {
+		return mixer.flattenEnumMap();
+	}
 }
 
 

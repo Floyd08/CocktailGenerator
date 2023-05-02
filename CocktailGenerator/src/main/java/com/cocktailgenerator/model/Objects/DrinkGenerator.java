@@ -113,8 +113,10 @@ public class DrinkGenerator {
 	}
 	
 	
-	/*
+	/**
 	 * 	The meat and potatoes of the whole app. Takes any recipe, presumably a template recipe, and randomizes the ingredients based on type or SuperType
+	 *  @param 		recipe A recipe object, whose ingredients will be randomized by this method
+	 *  @return 	The randomized recipe
 	 */
 	public Recipe generateRecipe(Recipe recipe) {
 		
@@ -144,6 +146,9 @@ public class DrinkGenerator {
 		return recipe;
 	}
 	
+	/**
+	 * Generates a completely random recipe, using no template and limited only by the number of ingredients specified
+	 */
 	public Recipe trueRandom(int numIngredients) {
 		
 		Random geny = new Random();
@@ -165,6 +170,9 @@ public class DrinkGenerator {
 		return new Recipe("TrueRandom", template);
 	}
 	
+	/*
+	 * A jumped up toString method. Reads the recipe object and packages it into a String suitable for the User
+	 */
 	public String printRecipe(Recipe recipe) {
 		
 		ArrayList<Ingredient> template = recipe.getTemplate();
@@ -192,9 +200,26 @@ public class DrinkGenerator {
 		//System.out.println("\n" + output);
 		return output;
 	}
-
+	
+	/**
+	 * Returns the EnumMap holding all ingredients available to the generator
+	 */
 	public EnumMap<ingredientType, ArrayList<Ingredient>> getLists() {
 		return lists;
+	}
+	
+	/**
+	 * Dumps the contents of the drink generator's EnumMap into a single list
+	 */
+	public ArrayList<Ingredient> flattenEnumMap() {
+		
+		ArrayList<Ingredient> masterList = new ArrayList<Ingredient>();
+		
+		for (int i = 0; i < ingredientType.values().length; ++i) {
+			masterList.addAll( this.getLists().get(ingredientType.getType(i)) );		//uses the mapping of Types to integer values in ingredientType to dump the EnumMap
+		}
+		
+		return masterList;
 	}
 	
 }
