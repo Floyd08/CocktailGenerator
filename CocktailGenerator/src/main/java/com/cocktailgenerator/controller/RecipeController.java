@@ -3,6 +3,8 @@ package com.cocktailgenerator.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cocktailgenerator.main.DataConnection;
 import com.cocktailgenerator.model.Objects.DrinkGenerator;
+import com.cocktailgenerator.model.Objects.Ingredient;
 import com.cocktailgenerator.model.Objects.RecipeFrontEnd;
 import com.cocktailgenerator.model.Objects.Recipe;
 import com.cocktailgenerator.model.Objects.RecipeBook;
@@ -22,27 +25,31 @@ import com.google.gson.Gson;
 @RestController
 //@CrossOrigin(origins = "http://localhost:4200")
 @CrossOrigin(origins = {"${CrossOriginValue}"})
+@Scope("request")
 public class RecipeController {
 
-	DataConnection datCon;
-	DrinkGenerator mixer;
-	RecipeBook templates;
+	//DrinkGenerator mixer;
+	
+	@Autowired
+	private DrinkGenerator mixer;
+	@Autowired
+	private RecipeBook templates;
 	Gson gS = new Gson();
 	
 	public RecipeController() {
 		
-		datCon = DataConnection.getInstance();
-		mixer = new DrinkGenerator(datCon);
-		templates = null;
-		
-		try {
-			 //templates = new RecipeBook("Data/RecipeBook/Templates");
-			templates = new RecipeBook(datCon);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-		}
+//		DataConnection datCon = DataConnection.getInstance();
+		//mixer = new DrinkGenerator();
+//		templates = null;
+//		
+//		try {
+//			 //templates = new RecipeBook("Data/RecipeBook/Templates");
+//			templates = new RecipeBook();
+//		}
+//		catch (Exception e) {
+//			e.printStackTrace();
+//			System.out.println(e.getMessage());
+//		}
 	}
 	
 	@GetMapping("/templateNames")

@@ -7,18 +7,21 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.bson.Document;
+import org.springframework.stereotype.Component;
 
 import com.cocktailgenerator.main.DataConnection;
 import com.google.gson.Gson;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 
+@Component
 public class RecipeBook {
 
 	private ArrayList<Recipe> book = new ArrayList<Recipe>();
 	
-	public RecipeBook(DataConnection datCon) {
+	public RecipeBook() {
 		
+		DataConnection datCon = DataConnection.getInstance();
 		Gson gS = new Gson();
 		MongoCollection<Document> templateCOL = datCon.getDB().getCollection("Templates");
 		

@@ -48,7 +48,7 @@ public class DB_Testing {
 		
 		Gson gS = new Gson();
 		
-		DrinkGenerator mixer = new DrinkGenerator(datCon);
+		DrinkGenerator mixer = new DrinkGenerator();
 		ArrayList<Ingredient> ingres = mixer.getLists().get(ingredientType.Spirit);
 		System.out.println(ingres.toString());
 		

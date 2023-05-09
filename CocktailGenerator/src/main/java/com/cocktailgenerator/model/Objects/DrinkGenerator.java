@@ -8,6 +8,8 @@ import java.util.Random;
 import static com.mongodb.client.model.Filters.eq;
 import org.bson.Document;
 import org.bson.conversions.Bson;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import com.cocktailgenerator.exceptions.EmptyIngredientListException;
 import com.cocktailgenerator.main.DataConnection;
@@ -17,48 +19,20 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Projections;
 
+@Component
+@Scope("session")
 public class DrinkGenerator {
 
-	private String inventoryPath;
+	private DataConnection datCon = DataConnection.getInstance();
+	//private String inventoryPath;
 	private EnumMap<ingredientType, ArrayList<Ingredient>> lists =  new EnumMap<>(ingredientType.class);
+	public int status = 0;					//0 indicates the generator is uninitialized, 1 indicates it's ready to go
 	
-	//The 'User' constructor. After validation, loads ingredients from the user's own list of ingredients
-	public DrinkGenerator(DataConnection datCon) {
-		
-		String typeToggle = "type";
-		ArrayList<Ingredient> ingredients;
-		MongoCollection<Document> ingredientsCOL = datCon.getDB().getCollection("Ingredients");
-		FindIterable<Document> subSetIngredients;
-		Bson projectionFields = Projections.fields(
-				Projections.include("superType", "type", "subType", "proportion"), 
-				Projections.excludeId());
-		
-		try {
-			for (ingredientType type : ingredientType.values()) {
-				
-				if (type == ingredientType.Spirit || type == ingredientType.Juice || type == ingredientType.Liqueur) {
-					typeToggle = "superType";							//More General lists
-				}
-				else {
-					typeToggle = "type";								//Specific lists
-				}
-				Bson filter = Filters.eq(typeToggle, type.toString());
-				subSetIngredients = ingredientsCOL.find(filter)				
-						.projection(projectionFields);
-				
-				Iterator<Document> subSetErator = subSetIngredients.iterator();
-				ingredients = Ingredient.buildList(subSetErator);
-				lists.put(type, ingredients);
-			}
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-		}
+	public DrinkGenerator() {
+		//loadGuestIngredients();
 	}
 	
-	//The 'Guest' constructor. Loads ingredients from the master list of all ingredients
-	public DrinkGenerator(DataConnection datCon, String userName) {
+	public DrinkGenerator(String userName) {
 		
 		String typeToggle = "type";
 		ArrayList<Ingredient> ingredients;
@@ -94,23 +68,57 @@ public class DrinkGenerator {
 		}
 	}
 	
-	public DrinkGenerator() {
+	public void loadGuestIngredients() {
 		
-		inventoryPath = "Data/MyInventory";				//The default inventory, if none is provided by a user profile		
+		String typeToggle = "type";
+		ArrayList<Ingredient> ingredients;
+		MongoCollection<Document> ingredientsCOL = datCon.getDB().getCollection("Ingredients");
+		FindIterable<Document> subSetIngredients;
+		Bson projectionFields = Projections.fields(
+				Projections.include("superType", "type", "subType", "proportion"), 
+				Projections.excludeId());
+		
 		try {
-			ArrayList<Ingredient> ingredients;
 			for (ingredientType type : ingredientType.values()) {
-				//get a subset of the collection, then pass it to buildList to turn it into an arrayList. Then execution continues as is.
-				ingredients = Ingredient.buildList(inventoryPath + "/" + type.toString());
-				//lists.put(type.toString(), ingredients);
+				
+				if (type == ingredientType.Spirit || type == ingredientType.Juice || type == ingredientType.Liqueur) {
+					typeToggle = "superType";							//More General lists
+				}
+				else {
+					typeToggle = "type";								//Specific lists
+				}
+				Bson filter = Filters.eq(typeToggle, type.toString());
+				subSetIngredients = ingredientsCOL.find(filter)				
+						.projection(projectionFields);
+				
+				Iterator<Document> subSetErator = subSetIngredients.iterator();
+				ingredients = Ingredient.buildList(subSetErator);
 				lists.put(type, ingredients);
 			}
-		} 
+		}
 		catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 	}
+	
+//	public DrinkGenerator() {
+//		
+//		inventoryPath = "Data/MyInventory";				//The default inventory, if none is provided by a user profile		
+//		try {
+//			ArrayList<Ingredient> ingredients;
+//			for (ingredientType type : ingredientType.values()) {
+//				//get a subset of the collection, then pass it to buildList to turn it into an arrayList. Then execution continues as is.
+//				ingredients = Ingredient.buildList(inventoryPath + "/" + type.toString());
+//				//lists.put(type.toString(), ingredients);
+//				lists.put(type, ingredients);
+//			}
+//		} 
+//		catch (Exception e) {
+//			e.printStackTrace();
+//			System.out.println(e.getMessage());
+//		}
+//	}
 	
 	
 	/**
