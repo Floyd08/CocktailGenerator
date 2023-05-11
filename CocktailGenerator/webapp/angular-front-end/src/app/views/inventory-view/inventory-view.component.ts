@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { ingredient } from 'src/app/interfaces/ingredient.interface';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { IngredientService } from 'src/app/services/ingredient.service';
 
 @Component({
@@ -9,21 +11,26 @@ import { IngredientService } from 'src/app/services/ingredient.service';
 })
 export class InventoryViewComponent implements OnInit {
 
-	private allIngredients: ingredient[];
+	allIngredients: ingredient[];
+	userName!: string;
+	userNameSubscription!: Subscription;
 
-	constructor(private IS: IngredientService) {
+	constructor(private IS: IngredientService, private AS: AuthenticationService) {
 		this.allIngredients = [];
 	}
 
 	ngOnInit(): void {
-		this.IS.getAll().subscribe(data => {
+		this.userNameSubscription = this.AS.currentMessage.subscribe(message => this.userName = message)
+		this.IS.getAll(this.userName).subscribe(data => {
 			for( let i = 0; i < data.length; ++i){
 				this.allIngredients.push(data[i]);
 				// this.allIngredients.push(
 				// 	this.fromJson(data[i])
 				// )
 			}
+			console.log(this.allIngredients[0]);
 		})
+		this.userNameSubscription = this.AS.currentMessage.subscribe(message => this.userName = message)		
 	}
 
 	// fromJson(json: string): ingredient {

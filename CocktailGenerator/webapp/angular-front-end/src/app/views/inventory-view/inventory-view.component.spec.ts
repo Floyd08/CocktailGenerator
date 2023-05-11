@@ -20,4 +20,5 @@ describe('InventoryViewComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
 });

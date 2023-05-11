@@ -14,16 +14,18 @@ export class RecipeService {
 	//private recipeUrl: string;
 	private newDrinkUrl: string;
 	private backendUrl: string;
+	private guestUrl: string;
 
   	constructor(private http: HttpClient) {
-		//this.backendUrl = 'http://localhost:8080';
+		this.backendUrl = 'http://localhost:8080';
 		//this.backendUrl = 'http://18.191.37.210:8080';
-		this.backendUrl = environment.apiURL;
+		//this.backendUrl = environment.apiURL;
 
 		this.templatesUrl = this.backendUrl + '/templates';
 		this.templateNamesUrl = this.backendUrl + '/templateNames';
 		//this.recipeUrl = this.backendUrl + '/recipe';
 		this.newDrinkUrl = this.backendUrl + '/generateDrink'
+		this.guestUrl = this.backendUrl + '/loadGuest';
 	}
 	
 	public getNames(): Observable<string[]> {
@@ -36,12 +38,16 @@ export class RecipeService {
 	// 	return this.http.get(this.recipeUrl, {responseType: 'text', params});
 	// }
 
-	public generateNewDrink(index: number): Observable<DrinkTemplate> {
-		const params = new HttpParams().append('index', index);
+	public generateNewDrink(index: number, userName: string): Observable<DrinkTemplate> {
+		const params = new HttpParams().append('index', index).append('userName', userName);
 		return this.http.get<DrinkTemplate>(this.newDrinkUrl, {params});
 	}
 	
 	public getDrinkTemplates(): Observable<DrinkTemplate[]> {
 		return this.http.get<DrinkTemplate[]>(this.templatesUrl);
 	}
+
+	// public logInGuest() {
+	// 	this.http.get(this.guestUrl).subscribe();
+	// }
 }

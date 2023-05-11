@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { RecipeService } from '../services/recipe-service.service';
 import { DrinkTemplate } from '../model/DrinkTemplate';
+import { LoginService } from '../services/login.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 interface drinkName {
 	index: number;
@@ -20,10 +22,12 @@ export class DrinkViewComponent implements OnInit {
 	drinkTemplates: DrinkTemplate[];
 	templateSelect: string;
 	newDrink: DrinkTemplate;
+	userName!: string;
+	userNameSubscription!: Subscription;
 
 	selectedNum = 0;
 	
-	constructor(private RS: RecipeService) {
+	constructor(private RS: RecipeService, private AS: AuthenticationService) {
 		this.templateNames = []; 
 		this.drinkTemplates = [];
 		this.templateSelect = "";
@@ -41,6 +45,7 @@ export class DrinkViewComponent implements OnInit {
 			this.populateNames();
 			//this.generateDrink();
 		})
+		this.userNameSubscription = this.AS.currentMessage.subscribe(message => this.userName = message);
 	}
 	
 	populateNames() {
@@ -55,7 +60,7 @@ export class DrinkViewComponent implements OnInit {
 	}
 
 	generateDrink() {
-		this.RS.generateNewDrink(this.selectedNum).subscribe(data => {
+		this.RS.generateNewDrink(this.selectedNum, this.userName).subscribe(data => {
 			this.newDrink = data;
 			//this.convertToOunces();
 			//console.log(this.newDrink.description);
@@ -67,6 +72,10 @@ export class DrinkViewComponent implements OnInit {
 			
 		}
 	}
+
+	// useAsGuest() {
+	// 	this.RS.logInGuest();
+	//   }
 
 	// convertToOunces() {
 	// 	this.newDrink.description = this.newDrink.description.replaceAll("parts", "oz");

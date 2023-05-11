@@ -13,15 +13,15 @@
             <div class="mb-3">
                 <mat-form-field appearance="outline">
 					<mat-label>Password</mat-label>
-					<input matInput @password>
+					<input matInput #password>
 				</mat-form-field>
             </div>
             <div>
-            	<button mat-raised-button>Log In</button>
+            	<a routerLink="/drink-view"><button mat-raised-button onclick (click)="logInUser(user.value)">Log In</button></a>
                 <button mat-raised-button>Register</button>
             </div>
             <div>
-                <a routerLink="/drink-view"><button mat-raised-button class="btn btn-success">Use as Guest</button></a>
+                <a routerLink="/drink-view"><button mat-raised-button onclick (click)="useAsGuest()">Use as Guest</button></a>
             </div>
         </form>
     </div>

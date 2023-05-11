@@ -1,6 +1,42 @@
 <p>inventory-view works!</p>
 
 <div name="inventoryTables">
+
+    <div class="scrollable" style="width: 60%">
+        <table>
+            <colgroup>
+                <col span="1" style="width: 40%;"/>
+                <col span="1" style="width: 30%;"/>
+                <col span="1" style="width: 30%;"/>>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Type</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr *ngFor="let ingredient of allIngredients">
+                    <td>{{ ingredient.superType }}</td>
+                    <td>{{ ingredient.type }}</td>
+                    <td>{{ ingredient.subType }}</td>
+                </tr>
+            </tbody>
+            
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- 
+<div name="inventoryTables">
     <div name="All">
         <table name="allTable">
         <tr>
@@ -20,3 +56,4 @@
         </table>
     </div>
 </div>
+-->

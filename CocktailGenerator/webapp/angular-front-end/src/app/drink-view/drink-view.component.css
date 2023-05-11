@@ -74,4 +74,11 @@
     white-space: pre-line;
   }
 
+  .inventory-button {
+    float: left;
+    position: absolute;
+    top: 550px;
+    left: 350px;
+    z-index: 1;
+  }
  
