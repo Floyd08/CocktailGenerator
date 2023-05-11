@@ -1,6 +1,6 @@
 package com.cocktailgenerator.exceptions;
 
-import com.cocktailgenerator.model.CocktailGenerator.ingredientType;
+import com.cocktailgenerator.main.ingredientType;
 
 public class EmptyIngredientListException extends Exception {
 	

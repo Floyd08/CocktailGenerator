@@ -1,8 +1,7 @@
-package com.cocktailgenerator.model.Objects;
+package com.cocktailgenerator.data;
 
 import org.bson.Document;
 
-import com.cocktailgenerator.main.DataConnection;
 import com.mongodb.client.MongoCollection;
 
 public class IngredientDAO {

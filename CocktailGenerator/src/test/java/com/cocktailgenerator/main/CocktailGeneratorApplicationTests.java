@@ -8,7 +8,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.cocktailgenerator.model.Objects.Ingredient;
+import com.cocktailgenerator.entity.Ingredient;
 
 @SpringBootTest
 @AutoConfigureMockMvc

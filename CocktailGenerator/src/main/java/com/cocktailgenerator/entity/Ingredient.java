@@ -1,4 +1,4 @@
-package com.cocktailgenerator.model.Objects;
+package com.cocktailgenerator.entity;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

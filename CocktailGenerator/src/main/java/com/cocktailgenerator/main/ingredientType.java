@@ -1,4 +1,4 @@
-package com.cocktailgenerator.model.CocktailGenerator;
+package com.cocktailgenerator.main;
 
 public enum ingredientType {
 	Spirit, Liqueur, FruitLiqueur, HerbalLiqueur, BitterLiqueur,

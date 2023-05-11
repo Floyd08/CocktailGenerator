@@ -1,11 +1,10 @@
-package com.cocktailgenerator.model.Testing;
+package com.cocktailgenerator.Testing;
 
 import java.util.ArrayList;
 
+import com.cocktailgenerator.entity.Ingredient;
+import com.cocktailgenerator.entity.Recipe;
 import com.google.gson.Gson;
-
-import com.cocktailgenerator.model.Objects.Ingredient;
-import com.cocktailgenerator.model.Objects.Recipe;
 
 //import Objects.Spirit;
 

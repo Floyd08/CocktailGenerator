@@ -1,11 +1,11 @@
-package com.cocktailgenerator.model.Testing;
+package com.cocktailgenerator.Testing;
 
 import java.util.ArrayList;
 
-import com.cocktailgenerator.model.Objects.Ingredient;
-import com.cocktailgenerator.model.Objects.RecipeBook;
-import com.cocktailgenerator.model.Objects.DrinkGenerator;
-import com.cocktailgenerator.model.Objects.RecipeFrontEnd;
+import com.cocktailgenerator.entity.Ingredient;
+import com.cocktailgenerator.entity.RecipeBook;
+import com.cocktailgenerator.entity.RecipeFrontEnd;
+import com.cocktailgenerator.main.DrinkGenerator;
 
 public class GeneralTests {
 

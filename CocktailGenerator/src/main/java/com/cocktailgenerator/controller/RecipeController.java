@@ -12,26 +12,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.cocktailgenerator.main.DataConnection;
-import com.cocktailgenerator.model.Objects.DrinkGenerator;
-import com.cocktailgenerator.model.Objects.Ingredient;
-import com.cocktailgenerator.model.Objects.RecipeFrontEnd;
-import com.cocktailgenerator.model.Objects.Recipe;
-import com.cocktailgenerator.model.Objects.RecipeBook;
-
+import com.cocktailgenerator.data.DataConnection;
+import com.cocktailgenerator.entity.Ingredient;
+import com.cocktailgenerator.entity.Recipe;
+import com.cocktailgenerator.entity.RecipeBook;
+import com.cocktailgenerator.entity.RecipeFrontEnd;
+import com.cocktailgenerator.main.DrinkGenRouter;
 import com.google.gson.Gson;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(origins = {"${CrossOriginValue}"})
-@Scope("request")
+@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = {"${CrossOriginValue}"})
 public class RecipeController {
 
 	//DrinkGenerator mixer;
 	
 	@Autowired
-	private DrinkGenerator mixer;
+	private DrinkGenRouter mixer;
 	@Autowired
 	private RecipeBook templates;
 	Gson gS = new Gson();
@@ -66,7 +66,7 @@ public class RecipeController {
 	public String printRecipe(@RequestParam int recipeIndex) {
 		
 		if (templates != null) {
-			return mixer.printRecipe(templates.getBook().get(recipeIndex));
+			return templates.printRecipe(templates.getBook().get(recipeIndex));
 		}
 		else {
 			return null;
@@ -79,17 +79,21 @@ public class RecipeController {
 	}
 	
 	@GetMapping("/generateDrink")
-	public RecipeFrontEnd generateDrink(@RequestParam int index) {
+	public RecipeFrontEnd generateDrink(@RequestParam int index, String userName) {
+		
+//		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+//		String sessID = attr.getRequest().getSession(true).getId(); // true == allow create
+//		System.out.println("SessID=" + sessID);
 		
 		Recipe newDrink = new Recipe(templates.getBook().get(index));
-		newDrink = mixer.generateRecipe(newDrink);
+		newDrink = mixer.getUser(userName).generateRecipe(newDrink);
 		
 		return new RecipeFrontEnd(newDrink);
 	}
 	
 	@GetMapping("/getAllIngredients")
-	public ArrayList<Ingredient> getAllIngredients() {
-		return mixer.flattenEnumMap();
+	public ArrayList<Ingredient> getAllIngredients(@RequestParam String userName) {
+		return mixer.getUser(userName).flattenEnumMap();
 	}
 }
 

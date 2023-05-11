@@ -1,4 +1,4 @@
-package com.cocktailgenerator.model.Objects;
+package com.cocktailgenerator.entity;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -9,7 +9,7 @@ import java.util.List;
 import org.bson.Document;
 import org.springframework.stereotype.Component;
 
-import com.cocktailgenerator.main.DataConnection;
+import com.cocktailgenerator.data.DataConnection;
 import com.google.gson.Gson;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -142,6 +142,34 @@ public class RecipeBook {
 			
 			for (int i = 0; i < extras.size(); ++i) {
 				output.add(extras.get(i).toString() + " \n");
+			}
+		}
+			
+		//System.out.println("\n" + output);
+		return output;
+	}
+	
+	public String printRecipe(Recipe recipe) {
+		
+		ArrayList<Ingredient> template = recipe.getTemplate();
+		String output = "Template used: " + recipe.getName() + " \n";
+		
+		for (int i = 0; i < template.size(); ++i) {
+			
+			if ( template.get(i).getType().equals("Bitters") ) {
+				output += template.get(i).getProportion() + " dashes " + template.get(i).getSubType() + " bitters \n";
+			}
+			else {
+				output += template.get(i).toString() + " \n";
+			}
+		}
+		
+		if ( recipe.getExtras() != null ) {
+			
+			ArrayList<Ingredient> extras = recipe.getExtras();
+			
+			for (int i = 0; i < extras.size(); ++i) {
+				output += extras.get(i).toString() + " \n";
 			}
 		}
 			

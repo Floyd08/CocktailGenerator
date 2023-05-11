@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cocktailgenerator.main.DataConnection;
-import com.cocktailgenerator.model.Objects.DrinkGenerator;
-import com.cocktailgenerator.model.Objects.User;
+import com.cocktailgenerator.data.DataConnection;
+import com.cocktailgenerator.entity.User;
+import com.cocktailgenerator.main.DrinkGenerator;
 import com.google.gson.Gson;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;

@@ -1,4 +1,4 @@
-package com.cocktailgenerator.main;
+package com.cocktailgenerator.data;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;

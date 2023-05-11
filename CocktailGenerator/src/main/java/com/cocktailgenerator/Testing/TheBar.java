@@ -1,11 +1,12 @@
-package com.cocktailgenerator.model.CocktailGenerator;
+package com.cocktailgenerator.Testing;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Random;
-import com.cocktailgenerator.model.Objects.Recipe;
-import com.cocktailgenerator.model.Objects.RecipeBook;
-import com.cocktailgenerator.model.Objects.DrinkGenerator;
+
+import com.cocktailgenerator.entity.Recipe;
+import com.cocktailgenerator.entity.RecipeBook;
+import com.cocktailgenerator.main.DrinkGenerator;
 
 public class TheBar {
 

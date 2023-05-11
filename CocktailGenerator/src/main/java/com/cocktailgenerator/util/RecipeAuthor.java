@@ -1,13 +1,12 @@
-package com.cocktailgenerator.model.Util;
+package com.cocktailgenerator.util;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+import com.cocktailgenerator.entity.Ingredient;
+import com.cocktailgenerator.entity.Recipe;
 import com.google.gson.Gson;
-
-import com.cocktailgenerator.model.Objects.Ingredient;
-import com.cocktailgenerator.model.Objects.Recipe;
 
 /*
  * This is a simple utility program, used to update the template data file

@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 		MongoAutoConfiguration.class,
 		MongoDataAutoConfiguration.class
 })
-@ComponentScan({"com.cocktailgenerator.controller", "com.cocktailgenerator.model.Objects" })
+@ComponentScan({"com.cocktailgenerator.controller", "com.cocktailgenerator.entity", "com.cocktailgenerator.main"})
 public class CocktailGeneratorApplication {
 
 	public static void main(String[] args) {
