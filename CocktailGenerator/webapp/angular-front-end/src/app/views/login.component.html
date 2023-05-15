@@ -17,8 +17,8 @@
 				</mat-form-field>
             </div>
             <div>
-            	<a routerLink="/drink-view"><button mat-raised-button onclick (click)="logInUser(user.value)">Log In</button></a>
-                <button mat-raised-button>Register</button>
+            	<button mat-raised-button onclick (click)="logInUser(user.value, password.value)">Log In</button>
+                <button mat-raised-button onclick (click)="registerUser(user.value, password.value)">Register</button>
             </div>
             <div>
                 <a routerLink="/drink-view"><button mat-raised-button onclick (click)="useAsGuest()">Use as Guest</button></a>
