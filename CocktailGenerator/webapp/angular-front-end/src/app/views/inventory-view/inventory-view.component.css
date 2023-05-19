@@ -1,8 +1,18 @@
 .inventoryTables {
     border: 1px solid black;
+    float: left; 
+    position: relative;
 }
 
 .scrollable {
+    float: left;
+    overflow: scroll;
+    height:800px;
+    margin-top:20px
+}
+
+.userScrollable {
+    float: left;
     overflow: scroll;
     height:800px;
     margin-top:20px

@@ -1,59 +1,43 @@
-<p>inventory-view works!</p>
 
 <div name="inventoryTables">
 
-    <div class="scrollable" style="width: 60%">
-        <table>
-            <colgroup>
-                <col span="1" style="width: 40%;"/>
-                <col span="1" style="width: 30%;"/>
-                <col span="1" style="width: 30%;"/>>
-            </colgroup>
-            <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>Type</th>
-                    <th>Name</th>
-                </tr>
-            </thead>
+    <div>
+        <h2>Master List</h2>
+        <div class="scrollable" style="width: 40%">
+        
+            <ul>
+                <li *ngFor="let ingredient of allIngredients; let i = index">
+                    <mat-checkbox (change)="toggleIngredientMaster(i)">
+                        {{ ingredient.superType}}, {{ ingredient.type }}, {{ ingredient.subType }}
+                    </mat-checkbox>
+                </li>
+            </ul>
+        
+        </div>
+    </div>
+    
+    <div>
+        <h2>User List</h2>
+        <div class="userScrollable" style="width: 40%">
             
-            <tbody>
-                <tr *ngFor="let ingredient of allIngredients">
-                    <td>{{ ingredient.superType }}</td>
-                    <td>{{ ingredient.type }}</td>
-                    <td>{{ ingredient.subType }}</td>
-                </tr>
-            </tbody>
+            <ul>
+                <li *ngFor="let uIngredient of userIngredients; let i = index">
+                    <mat-checkbox (change)="toggleIngredientUser(i)">
+                        {{ uIngredient.superType}}, {{ uIngredient.type }}, {{ uIngredient.subType }}
+                    </mat-checkbox>
+                </li>
+            </ul>
             
-        </table>
+        </div>
     </div>
+
+    <div>
+        <button mat-raised-button onclick (click)="addCheckedIngredients()">Add Items to User List</button>
+        <button mat-raised-button onclick (click)="removeCheckedIngredients()">Remove Items From User List</button>
+    </div>
+    
 </div>
+    
 
 
 
-
-
-
-
-<!-- 
-<div name="inventoryTables">
-    <div name="All">
-        <table name="allTable">
-        <tr>
-            <th>Category</th>
-            <th>Type</th>
-            <th>Name</th>
-        </tr>
-        </table>
-    </div>
-    <div name="userInv">
-        <table name="userTable">
-        <tr>
-            <th>Category</th>
-            <th>Type</th>
-            <th>Name</th>
-        </tr>
-        </table>
-    </div>
-</div>
--->
