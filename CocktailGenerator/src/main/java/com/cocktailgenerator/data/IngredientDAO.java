@@ -1,28 +1,34 @@
 package com.cocktailgenerator.data;
 
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
+import com.cocktailgenerator.entity.Ingredient;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
 
 public class IngredientDAO {
 	
 	private DataConnection datCon;
-	private MongoCollection<Document> ingredientsCOL;
+	private MongoCollection<Document> userIngredientsCOL;
 	
-	private IngredientDAO(String collectionName) {
-		ingredientsCOL = datCon.getDB().getCollection(collectionName);
+	public IngredientDAO() {
+		datCon = DataConnection.getInstance();
+		userIngredientsCOL = datCon.getDB().getCollection("UserIngredients");
 	}
 	
-	/*
-	 * Look into Spring repository pattern. Consider two repository classes;
-	 * One for the masterList, and another that builds for a specific user name
-	 * 
-	 * A lot of what Drink generator does now is hold the lists, so perhaps I should
-	 * bust out the EnumMap into a repository class. Than perhaps one repository 
-	 * will extend the other?
-	 * Turns out MongoRepository is a thing, that might bet he way to go here.
-	 * Alternatively, what I might ACUTALLY want is to do something with Spring Context. 
-	 * The DrinkGenerator is really the meat of the context, and does really need to 
-	 * be a Repository
-	 */
+	public void AddUserIngredient(Ingredient ingredient, String userName) {
+		
+		userIngredientsCOL.insertOne(new Document().append("owner", userName)
+				.append("superType", ingredient.getSuperType())
+				.append("type", ingredient.getType())
+				.append("subType", ingredient.getSubType())
+				.append("proportion", 0));
+	}
+	
+	public void removeUserIngredient(String subType, String userName) {
+		
+		Bson filter = Filters.and(Filters.eq("owner", userName), Filters.eq("subType", subType));
+		userIngredientsCOL.deleteOne(filter);
+	}
 }

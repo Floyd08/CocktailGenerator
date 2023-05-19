@@ -91,10 +91,10 @@ public class RecipeController {
 		return new RecipeFrontEnd(newDrink);
 	}
 	
-	@GetMapping("/getAllIngredients")
-	public ArrayList<Ingredient> getAllIngredients(@RequestParam String userName) {
-		return mixer.getUser(userName).flattenEnumMap();
-	}
+//	@GetMapping("/getAllIngredients")
+//	public ArrayList<Ingredient> getAllIngredients(@RequestParam String userName) {
+//		return mixer.getUser(userName).flattenEnumMap();
+//	}
 }
 
 

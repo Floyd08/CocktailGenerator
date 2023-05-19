@@ -143,7 +143,7 @@ public class DrinkGenerator {
 				//Do nothing, and leave this ingredient as it is
 			}
 			else {
-				int rando = geny.nextInt(list.size() - 1);
+				int rando = geny.nextInt(list.size());
 				
 				template.set(i, list.get(rando));
 				template.get(i).setProportion(proportion);

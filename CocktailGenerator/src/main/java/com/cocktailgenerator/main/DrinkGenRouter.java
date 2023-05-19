@@ -33,9 +33,10 @@ public class DrinkGenRouter {
 		}
 		else {
 			
-			if ( !activeGenerators.containsKey(userName) ) {
-				activeGenerators.put(userName, new DrinkGenerator(userName));
-			} 
+//			if ( !activeGenerators.containsKey(userName) ) {
+//				activeGenerators.put(userName, new DrinkGenerator(userName));
+//			}
+			initializeUser(userName);
 			return activeGenerators.get(userName);
 		}
 	}
@@ -46,4 +47,10 @@ public class DrinkGenRouter {
 			activeGenerators.put(userName, new DrinkGenerator(userName));
 		}
 	}
+	
+	public void reinitializeUser(String userName) {
+		activeGenerators.put(userName, new DrinkGenerator(userName));
+	}
+	
+	
 }
