@@ -21,8 +21,8 @@ export class IngredientService {
 		//this.backendUrl = environment.apiURL;
 		this.allIngredientsUrl = this.backendUrl + '/getAllIngredients';
 		this.userIngredientsUrl = this.backendUrl + '/getUserIngredients';
-		this.addUrl = this.backendUrl + '/addUserIngredient';
-		this.removeUrl = this.backendUrl + '/deleteUserIngredient';
+		this.addUrl = this.backendUrl + '/addUserIngredients';
+		this.removeUrl = this.backendUrl + '/deleteUserIngredients';
 	}
 
 	public getUserIngredients(userName: string): Observable<ingredient[]> {
@@ -34,17 +34,32 @@ export class IngredientService {
 		return this.http.get<ingredient[]>(this.allIngredientsUrl);
 	}
 
-	public add(ingredient: ingredient, userName: string) {
+	public add(ingredients: ingredient[], userName: string) {
 		
-		var ingredientJSON = {"owner": userName,
-							"superType": ingredient.superType,
-							"type": ingredient.type,
-							"subType": ingredient.subType}
-		this.http.post(this.addUrl, ingredientJSON).subscribe();
+		let ingredientsJSON = [];
+		ingredientsJSON = [
+			{
+				"owner": userName,
+				"superType": ingredients[0].superType,
+				"type": ingredients[0].type,
+				"subType": ingredients[0].subType
+			}
+		]
+		for (let i = 1; i < ingredients.length; ++i) {
+			ingredientsJSON.push({"owner": userName,
+				"superType": ingredients[i].superType,
+				"type": ingredients[i].type,
+				"subType": ingredients[i].subType
+			});
+		}
+
+		this.http.post(this.addUrl, ingredientsJSON).subscribe();
 	}
 
-	public remove(subType: string, userName: string) {
-		const params = new HttpParams().append('subType', subType).append('owner', userName);
+	public remove(subType: string[], userName: string) {
+		
+		///let subTypeString: string = subType.toString();
+		const params = new HttpParams().append('subTypes', subType.toString()).append('owner', userName);
 		this.http.delete(this.removeUrl, {params}).subscribe();
 	}
 }

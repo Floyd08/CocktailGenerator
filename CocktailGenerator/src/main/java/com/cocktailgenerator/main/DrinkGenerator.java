@@ -222,12 +222,18 @@ public class DrinkGenerator {
 	public ArrayList<Ingredient> flattenEnumMap() {
 		
 		ArrayList<Ingredient> masterList = new ArrayList<Ingredient>();
+		ingredientType[] superTypes = ingredientType.getSuperTypes();
 		
-		for (int i = 0; i < ingredientType.values().length; ++i) {
-			masterList.addAll( this.getLists().get(ingredientType.getType(i)) );		//uses the mapping of Types to integer values in ingredientType to dump the EnumMap
+		for (int i = 0; i < superTypes.length; ++i) {
+			masterList.addAll( this.getLists().get(superTypes[i]) );		//builds a simple list from the ingredient map
 		}
 		
 		return masterList;
 	}
 	
 }
+
+
+
+
+

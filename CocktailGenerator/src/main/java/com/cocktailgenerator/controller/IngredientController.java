@@ -1,6 +1,8 @@
 package com.cocktailgenerator.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -19,6 +21,7 @@ import com.cocktailgenerator.entity.Ingredient;
 import com.cocktailgenerator.entity.RecipeBook;
 import com.cocktailgenerator.main.DrinkGenRouter;
 import com.cocktailgenerator.main.DrinkGenerator;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -66,13 +69,53 @@ public class IngredientController {
 		}
 	}
 	
+	@PostMapping("addUserIngredients")
+	public void addUserIngredients(@RequestBody String JSON) {
+		
+		try {
+			String owner = "";
+			ArrayList<Ingredient> newIngredients = new ArrayList<Ingredient>();
+			ArrayList<String> list = new ArrayList<String>();
+			mapper.readTree(JSON).forEach(node -> list.add(node.toString()));
+			Iterator<String> listerator = list.iterator();
+			
+			while (listerator.hasNext()) {
+				String ingredientJSON = listerator.next();
+				
+				JsonNode ingredient = mapper.readTree(ingredientJSON);
+				owner = ingredient.findValue("owner").asText();
+				Ingredient newIngredient = new Ingredient(ingredient.findValue("superType").asText(),
+													ingredient.findValue("type").asText(), 
+													ingredient.findValue("subType").asText(), 0);
+				newIngredients.add(newIngredient);
+			}
+			inDAO.AddUserIngredients(newIngredients, owner);
+			mixer.reinitializeUser(owner);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+	}
+	
 	@DeleteMapping("/deleteUserIngredient")
 	public void deleteUserIngredient(@RequestParam String subType, @RequestParam String owner) {
 		System.out.println("Removing: " + subType);
 		inDAO.removeUserIngredient(subType, owner);
 		mixer.reinitializeUser(owner);
 	}
+	
+	@DeleteMapping("/deleteUserIngredients")
+	public void deleteUserIngredients(@RequestParam String[] subTypes, @RequestParam String owner) {
+		inDAO.removeUserIngredients(subTypes, owner);
+		mixer.reinitializeUser(owner);
+	}
 }
+
+
+
+
+
 
 
 

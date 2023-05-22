@@ -50,27 +50,42 @@ export class InventoryViewComponent implements OnInit {
 	}
 
 	public addCheckedIngredients(){
-		for (let i = 0; i < this.allIngredients.length; ++i) {
-			if (this.allIngredients[i].toggle) {
-				this.userIngredients.push(this.copyIngredient(this.allIngredients[i]));
-				this.IS.add(this.allIngredients[i], this.userName);
-			}
+
+		let ingredientsToAdd: ingredient[] = [];
+		if (this.userName === "Guest") {
+			window.alert("Cannot edit ingredients in Guest mode")
 		}
+		else {
+			for (let i = 0; i < this.allIngredients.length; ++i) {
+				if (this.allIngredients[i].toggle) {
+					this.userIngredients.push(this.copyIngredient(this.allIngredients[i]));
+					ingredientsToAdd.push(this.allIngredients[i]);
+				}
+			}
+			this.IS.add(ingredientsToAdd, this.userName);
+		}	
 	}
 
 	public removeCheckedIngredients(){
 
-		for(let i = 0; i < this.userIngredients.length; ++i) {
-			if (!this.userIngredients[i].toggle) {
-				this.IS.remove(this.userIngredients[i].subType, this.userName);
-			}
+		let ingredientsToRemove: string[] = [];
+		if (this.userName === "Guest") {
+			window.alert("Cannot edit ingredients in Guest mode")
 		}
-		let newList = this.userIngredients.filter(this.checkRemove);
-		this.userIngredients = newList;
+		else {
+			for(let i = 0; i < this.userIngredients.length; ++i) {
+				if (!this.userIngredients[i].toggle) {
+					ingredientsToRemove.push(this.userIngredients[i].subType);
+					//this.IS.remove(this.userIngredients[i].subType, this.userName);
+				}
+			}
+			this.IS.remove(ingredientsToRemove, this.userName);
+			let newList = this.userIngredients.filter(this.checkRemove);
+			this.userIngredients = newList;
+		}
 	}
 
 	public checkRemove(ingredient: ingredient): boolean{
-		console.log(ingredient);
 		if (!ingredient.toggle) {
 			return ingredient.toggle;
 		}

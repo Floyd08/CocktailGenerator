@@ -1,5 +1,8 @@
 package com.cocktailgenerator.data;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
@@ -26,9 +29,41 @@ public class IngredientDAO {
 				.append("proportion", 0));
 	}
 	
+	public void AddUserIngredients(ArrayList<Ingredient> ingredients, String userName) {
+		
+		ArrayList<Document> toAdd = new ArrayList<Document>();
+		Iterator<Ingredient> ingredientsIterator = ingredients.iterator();
+		
+		while (ingredientsIterator.hasNext()) {
+			Ingredient ingredient = ingredientsIterator.next();
+			toAdd.add(new Document().append("owner", userName)
+					.append("superType", ingredient.getSuperType())
+					.append("type", ingredient.getType())
+					.append("subType", ingredient.getSubType())
+					.append("proportion", 0));
+		}
+		userIngredientsCOL.insertMany(toAdd);
+	}
+	
 	public void removeUserIngredient(String subType, String userName) {
 		
 		Bson filter = Filters.and(Filters.eq("owner", userName), Filters.eq("subType", subType));
 		userIngredientsCOL.deleteOne(filter);
 	}
+	
+	public void removeUserIngredients(String[] subTypes, String userName) {
+		
+		for (int i = 0; i < subTypes.length; ++i) {
+			removeUserIngredient(subTypes[i], userName);
+		}
+	}
+	
 }
+
+
+
+
+
+
+
+
