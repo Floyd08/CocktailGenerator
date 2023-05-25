@@ -26,8 +26,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
-//@CrossOrigin(origins = {"${CrossOriginValue}"})
+@CrossOrigin(origins = {"${CrossOriginValue}"})
 public class IngredientController {
 	
 	@Autowired

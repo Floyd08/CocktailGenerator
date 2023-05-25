@@ -24,8 +24,7 @@ import com.cocktailgenerator.main.DrinkGenRouter;
 import com.google.gson.Gson;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
-//@CrossOrigin(origins = {"${CrossOriginValue}"})
+@CrossOrigin(origins = {"${CrossOriginValue}"})
 public class RecipeController {
 
 	//DrinkGenerator mixer;

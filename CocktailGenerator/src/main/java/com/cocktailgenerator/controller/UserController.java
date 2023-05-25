@@ -12,8 +12,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
-//@CrossOrigin(origins = {"${CrossOriginValue}"})
+@CrossOrigin(origins = {"${CrossOriginValue}"})
 public class UserController {
 
 	@Autowired
@@ -58,10 +57,17 @@ public class UserController {
 			String userName = newUser.findValue("userName").asText();
 			String password = newUser.findValue("password").asText();
 			
-			if ( hashIt.encoder().matches(password, userDAO.retrieveHash(userName)) ) {
+			String hash = userDAO.retrieveHash(userName);
+			
+			if ( hash != null && hashIt.encoder().matches(password, hash) ) {
 				return 1;
 			}
-			return 0;			
+			else if ( hash == null) {
+				return 2;
+			}
+			else {
+				return 0;	
+			}		
 		}
 		catch (Exception e) {
 			e.printStackTrace();

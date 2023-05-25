@@ -31,7 +31,13 @@ public class UserDAO {
 		Bson projectionFields = Projections.fields(Projections.excludeId());
 		
 		FindIterable<Document> userDoc = usersCOL.find(filter).projection(projectionFields);
-		return userDoc.first().get("password").toString();
+		
+		if (userDoc.first() != null) {
+			return userDoc.first().get("password").toString();
+		}
+		else {
+			return null;
+		}
 	}
 	
 	public Boolean userExists(String userName) {
