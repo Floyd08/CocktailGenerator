@@ -1,0 +1,54 @@
+_id,proportion,subType,superType,type
+6418a9a9cc8b4e66bedfe536,0,Sweet Vermouth,AromatizedWine,AromatizedWine
+6418a9a9cc8b4e66bedfe537,0,Dry Vermouth,AromatizedWine,AromatizedWine
+6418a9a9cc8b4e66bedfe538,0,Sweet Lillet,AromatizedWine,AromatizedWine
+6418a9a9cc8b4e66bedfe539,0,Averna,Liqueur,BitterLiqueur
+6418a9a9cc8b4e66bedfe53a,0,Fernet Branca,Liqueur,BitterLiqueur
+6418a9a9cc8b4e66bedfe53b,0,Campari,Liqueur,BitterLiqueur
+6418a9a9cc8b4e66bedfe53c,0,Angostura,Bitters,Bitters
+6418a9a9cc8b4e66bedfe53d,0,Peychauds,Bitters,Bitters
+6418a9a9cc8b4e66bedfe53e,0,Orange,Bitters,Bitters
+6418a9a9cc8b4e66bedfe53f,0,Mole,Bitters,Bitters
+6418a9a9cc8b4e66bedfe540,0,Black Walnut,Bitters,Bitters
+6418a9a9cc8b4e66bedfe541,0,Grapefruit Hops,Bitters,Bitters
+6418a9a9cc8b4e66bedfe542,0,Creme de Cacao,Liqueur,DessertLiqueur
+6418a9a9cc8b4e66bedfe543,0,Frangelico,Liqueur,DessertLiqueur
+6418a9a9cc8b4e66bedfe544,0,Gianduja,Liqueur,DessertLiqueur
+6418a9a9cc8b4e66bedfe545,0,Irish Cream,Liqueur,DessertLiqueur
+6418a9a9cc8b4e66bedfe546,0,Curacao,Liqueur,FruitLiqueur
+6418a9a9cc8b4e66bedfe547,0,Peach Schnapps,Liqueur,FruitLiqueur
+6418a9a9cc8b4e66bedfe548,0,Cherry Heering,Liqueur,FruitLiqueur
+6418a9a9cc8b4e66bedfe549,0,Mango Malibu,Liqueur,FruitLiqueur
+6418a9a9cc8b4e66bedfe54a,0,Sloe Gin,Liqueur,FruitLiqueur
+6418a9a9cc8b4e66bedfe54b,0,Raspberry Wine,Liqueur,FruitLiqueur
+6418a9a9cc8b4e66bedfe54c,0,Rhubarb Liqueur,Liqueur,FruitLiqueur
+6418a9a9cc8b4e66bedfe54d,0,Southern Comfort,Liqueur,FruitLiqueur
+6418a9a9cc8b4e66bedfe54e,0,Maraschino,Liqueur,FruitLiqueur
+6418a9a9cc8b4e66bedfe54f,0,Green Chartreuse,Liqueur,HerbalLiqueur
+6418a9a9cc8b4e66bedfe550,0,Averna,Liqueur,HerbalLiqueur
+6418a9a9cc8b4e66bedfe551,0,Sloe Gin,Liqueur,HerbalLiqueur
+6418a9a9cc8b4e66bedfe552,0,Whisky,Spirit,Whisky
+6418a9a9cc8b4e66bedfe553,0,Cognac,Spirit,Cognac
+6418a9a9cc8b4e66bedfe554,0,Kirsch,Spirit,Kirsch
+6418a9a9cc8b4e66bedfe555,0,Black Rum,Spirit,Black Rum
+6418a9a9cc8b4e66bedfe556,0,Dark Rum,Spirit,Dark Rum
+6418a9a9cc8b4e66bedfe557,0,White Rum,Spirit,White Rum
+6418a9a9cc8b4e66bedfe558,0,Cachaca,Spirit,Cachaca
+6418a9a9cc8b4e66bedfe559,0,Tequila,Spirit,Tequila
+6418a9a9cc8b4e66bedfe55a,0,Mezcal,Spirit,Mezcal
+6418a9a9cc8b4e66bedfe55b,0,Gin,Spirit,Gin
+6418a9a9cc8b4e66bedfe55c,0,Vodka,Spirit,Vodka
+6418a9a9cc8b4e66bedfe55d,0,Orange(Fresh),Juice,SweetJuice
+6418a9a9cc8b4e66bedfe55e,0,Apple,Juice,SweetJuice
+6418a9a9cc8b4e66bedfe55f,0,Peach,Juice,SweetJuice
+6418a9a9cc8b4e66bedfe560,0,Pineapple,Juice,SweetJuice
+6418a9a9cc8b4e66bedfe561,0,Simple Syrup,Syrup,Syrup
+6418a9a9cc8b4e66bedfe562,0,Honey Syrup,Syrup,Syrup
+6418a9a9cc8b4e66bedfe563,0,Brown Sugar Syrup,Syrup,Syrup
+6418a9a9cc8b4e66bedfe564,0,Oleo Saccharum,Syrup,Syrup
+6418a9a9cc8b4e66bedfe565,0,Maple Syrup,Syrup,Syrup
+6418a9a9cc8b4e66bedfe566,0,Grenadine,Syrup,Syrup
+6418a9a9cc8b4e66bedfe567,0,Lemon,Juice,TartJuice
+6418a9a9cc8b4e66bedfe568,0,Lime,Juice,TartJuice
+6418a9a9cc8b4e66bedfe569,0,Cranberry,Juice,TartJuice
+6418a9a9cc8b4e66bedfe56a,0,Orange(Concentrate),Juice,TartJuice

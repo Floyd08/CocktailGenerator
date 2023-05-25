@@ -34,12 +34,12 @@ public class UserController {
 			String userName = newUser.findValue("userName").asText();
 			String password = newUser.findValue("password").asText();
 			
-			if ( !userDAO.userExists(userName) ) {
-				userDAO.AddUser(userName, hashPass(password));
-				return 1;
+			if ( userDAO.userExists(userName) ) {
+				return 0;
 			}
 			else {
-				return 0;
+				userDAO.AddUser(userName, hashPass(password));
+				return 1;
 			}			
 		}
 		catch (Exception e) {

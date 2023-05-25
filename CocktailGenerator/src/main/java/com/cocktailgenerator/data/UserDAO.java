@@ -45,9 +45,9 @@ public class UserDAO {
 		Bson filter = Filters.eq("userName", userName);
 		FindIterable<Document> userDoc = usersCOL.find(filter);
 		
-		System.out.println ("userDoc.first is null? " + userDoc.first() == null);
+		//System.out.println ("userDoc.first is null? " + userDoc.first() == null);
 		
-		if ( userDoc.first() != null && userDoc.first().toString().equals(userName)) {
+		if ( userDoc.first() != null && userDoc.first().get("userName").toString().equals(userName)) {
 			return true;
 		}
 		else {
