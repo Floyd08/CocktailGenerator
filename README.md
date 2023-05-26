@@ -11,7 +11,7 @@ You can create a user account, and build your own list of ingredients (what you 
 Current goals: 
 - Implement caching with Redis,  and move to a stateless backend
 - Migrate to MySQL
-- implement proper security
+- Implement proper security
 
 Features coming soon:
 - Generate a drink from a template chosen at random
