@@ -33,6 +33,9 @@ export class LoginPageComponent implements OnInit {
           this.AS.changeMessage(userName);
           this.router.navigate(["../drink-view"], {relativeTo: this.route});
         }
+        else if (data == 2) {
+          window.alert("User does not exist");
+        }
         else {
           console.log("user rejected");
           window.alert("Invalid user credentials");
@@ -45,6 +48,10 @@ export class LoginPageComponent implements OnInit {
       if (data == 1) {
         console.log("user created");
         window.alert("New user Registered!");
+      }
+      else if (data == 2) {
+        console.log("Registry failed: empty field(s)")
+        window.alert("User name and password must not be empty")
       }
       else {
         console.log("Registry failed: user exists")

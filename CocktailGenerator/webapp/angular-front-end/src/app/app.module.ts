@@ -12,13 +12,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { InventoryViewComponent } from './views/inventory-view/inventory-view.component';
+import { ClickOutsideDirective } from './click-outside.directive';
 
 @NgModule({
   declarations: [
     AppComponent, 
     LoginPageComponent, 
-    DrinkViewComponent, InventoryViewComponent
+    DrinkViewComponent, 
+    InventoryViewComponent,
+    ClickOutsideDirective
   ],
   imports: [
     BrowserModule,
@@ -28,6 +32,7 @@ import { InventoryViewComponent } from './views/inventory-view/inventory-view.co
     MatButtonModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatTooltipModule,
     BrowserAnimationsModule
   ],
   providers: [],

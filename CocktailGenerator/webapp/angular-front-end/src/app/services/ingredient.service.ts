@@ -17,8 +17,7 @@ export class IngredientService {
 
 	constructor(private http: HttpClient) { 
 
-		this.backendUrl = 'http://localhost:8080';
-		//this.backendUrl = environment.apiURL;
+		this.backendUrl = environment.apiURL;
 		this.allIngredientsUrl = this.backendUrl + '/getAllIngredients';
 		this.userIngredientsUrl = this.backendUrl + '/getUserIngredients';
 		this.addUrl = this.backendUrl + '/addUserIngredients';

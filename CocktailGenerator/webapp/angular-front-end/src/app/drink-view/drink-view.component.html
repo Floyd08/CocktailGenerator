@@ -6,7 +6,7 @@
 	<div class="dropdown">
 		<mat-form-field appearance="outline">
   			<mat-label>Choose a Template</mat-label>
-  			<mat-select class="select" [(value)]="selectedNum" >
+  			<mat-select #templateSelect class="select" (clickOutside)="toggleDropDown()" [(value)]="selectedNum">
     			<mat-option class="select-list" *ngFor="let templateName of templateNames" [value]="templateName.index">
       				{{templateName.name}} 
 				</mat-option>

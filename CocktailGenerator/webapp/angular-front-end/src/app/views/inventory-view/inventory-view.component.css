@@ -1,18 +1,27 @@
 .inventoryTables {
     border: 1px solid black;
-    float: left; 
-    position: relative;
+    padding: 20px;
+}
+
+.masterlist {
+    width: 50%;
+    float: left;
+    padding: 20px;
 }
 
 .scrollable {
-    float: left;
     overflow: scroll;
     height:800px;
     margin-top:20px
 }
 
-.userScrollable {
+.userlist {
+    width: 50%;
     float: left;
+    padding: 20px;
+}
+
+.userScrollable {
     overflow: scroll;
     height:800px;
     margin-top:20px

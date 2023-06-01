@@ -17,10 +17,8 @@ export class RecipeService {
 	private guestUrl: string;
 
   	constructor(private http: HttpClient) {
-		this.backendUrl = 'http://localhost:8080';
-		//this.backendUrl = 'http://18.191.37.210:8080';
-		//this.backendUrl = environment.apiURL;
-
+	
+		this.backendUrl = environment.apiURL;
 		this.templatesUrl = this.backendUrl + '/templates';
 		this.templateNamesUrl = this.backendUrl + '/templateNames';
 		//this.recipeUrl = this.backendUrl + '/recipe';

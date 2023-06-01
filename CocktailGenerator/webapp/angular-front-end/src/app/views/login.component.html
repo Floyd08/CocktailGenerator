@@ -7,18 +7,20 @@
             <div class="mb-3">
 				<mat-form-field appearance="outline">
 					<mat-label>User Name</mat-label>
-					<input matInput #user>
+					<input matInput #user placeholder="User Name">
 				</mat-form-field>
             </div>
             <div class="mb-3">
                 <mat-form-field appearance="outline">
 					<mat-label>Password</mat-label>
-					<input matInput #password>
+					<input matInput #password placeholder="Password" type="password">
 				</mat-form-field>
             </div>
             <div>
             	<button mat-raised-button onclick (click)="logInUser(user.value, password.value)">Log In</button>
-                <button mat-raised-button onclick (click)="registerUser(user.value, password.value)">Register</button>
+                <button mat-raised-button 
+                title="Create a new user from the info you enter above" 
+                onclick (click)="registerUser(user.value, password.value)">Register</button>
             </div>
             <div>
                 <a routerLink="/drink-view"><button mat-raised-button onclick (click)="useAsGuest()">Use as Guest</button></a>

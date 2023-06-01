@@ -37,6 +37,9 @@ public class UserController {
 			if ( userDAO.userExists(userName) ) {
 				return 0;
 			}
+			else if ( (userName.isEmpty() || userName.isBlank()) || (password.isEmpty() || password.isBlank()) ) {
+				return 2;
+			}
 			else {
 				userDAO.AddUser(userName, hashPass(password));
 				return 1;
@@ -78,5 +81,13 @@ public class UserController {
 	
 	private String hashPass(String plainText) {
 		return hashIt.encoder().encode(plainText);
+	}
+	
+	private boolean validateUserName(String userName) {
+		
+		if (userName.isEmpty()) {
+			return false;
+		}
+		return true;
 	}
 }

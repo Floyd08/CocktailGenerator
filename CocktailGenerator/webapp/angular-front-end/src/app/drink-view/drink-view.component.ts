@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { RecipeService } from '../services/recipe-service.service';
 import { DrinkTemplate } from '../model/DrinkTemplate';
@@ -17,13 +17,14 @@ interface drinkName {
 })
 export class DrinkViewComponent implements OnInit {
 	
-	//templateNames: string[];			//populate this array from the backend
 	templateNames: drinkName[];
 	drinkTemplates: DrinkTemplate[];
 	templateSelect: string;
 	newDrink: DrinkTemplate;
 	userName!: string;
 	userNameSubscription!: Subscription;
+
+	@ViewChild('templateSelect') dropDown: any;
 
 	selectedNum = 0;
 	
@@ -71,6 +72,10 @@ export class DrinkViewComponent implements OnInit {
 		for(let i = 0; i < this.newDrink.description.length; ++i) {
 			
 		}
+	}
+
+	toggleDropDown() {
+		this.dropDown.close();
 	}
 
 	// useAsGuest() {

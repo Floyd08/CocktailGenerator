@@ -1,9 +1,10 @@
 
 <div name="inventoryTables">
 
-    <div>
+    <div class="masterlist">
         <h2>Master List</h2>
-        <div class="scrollable" style="width: 40%">
+        <button class="add" mat-raised-button onclick (click)="addCheckedIngredients()">Add Items to User List</button>
+        <div class="scrollable">
         
             <ul>
                 <li *ngFor="let ingredient of allIngredients; let i = index">
@@ -16,9 +17,10 @@
         </div>
     </div>
     
-    <div>
+    <div class="userlist">
         <h2>User List</h2>
-        <div class="userScrollable" style="width: 40%">
+        <button class="remove" mat-raised-button onclick (click)="removeCheckedIngredients()">Remove Items From User List</button>
+        <div class="userScrollable">
             
             <ul>
                 <li *ngFor="let uIngredient of userIngredients; let i = index">
@@ -29,11 +31,6 @@
             </ul>
             
         </div>
-    </div>
-
-    <div>
-        <button mat-raised-button onclick (click)="addCheckedIngredients()">Add Items to User List</button>
-        <button mat-raised-button onclick (click)="removeCheckedIngredients()">Remove Items From User List</button>
     </div>
     
 </div>
