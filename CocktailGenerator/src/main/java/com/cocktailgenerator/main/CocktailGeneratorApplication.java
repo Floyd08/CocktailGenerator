@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication(exclude = {
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 		SecurityAutoConfiguration.class 
 })
 @ComponentScan({"com.cocktailgenerator.controller", "com.cocktailgenerator.entity", "com.cocktailgenerator.main"})
+@EnableCaching
 public class CocktailGeneratorApplication {
 
 	public static void main(String[] args) {

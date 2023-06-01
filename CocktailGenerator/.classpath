@@ -45,5 +45,14 @@
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/cwlau/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.1.0-SNAPSHOT/spring-boot-autoconfigure-3.1.0-SNAPSHOT.jar" sourcepath="C:/Users/cwlau/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.1.0-SNAPSHOT/spring-boot-autoconfigure-3.1.0-SNAPSHOT-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.springframework.boot"/>
+			<attribute name="maven.artifactId" value="spring-boot-autoconfigure"/>
+			<attribute name="maven.version" value="3.1.0-SNAPSHOT"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
